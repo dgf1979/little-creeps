@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://bni452hdudxfm"]
+
+[ext_resource type="Script" uid="uid://hpjj8gqewwo5" path="res://screens/lose/return_to_menu_btn.gd" id="2_edsux"]
+[ext_resource type="Script" uid="uid://b4ruq4mpnpa14" path="res://screens/lose/level_select_btn.gd" id="3_jjscs"]
+[ext_resource type="Script" uid="uid://cnwwn5f77eeim" path="res://screens/lose/quit_btn.gd" id="4_6l88u"]
+
+[node name="Win" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 240
+
+[node name="WonLbl" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "You Win!"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ReturnToMenuBtn" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+script = ExtResource("2_edsux")
+
+[node name="LevelSelectBtn" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level Select"
+script = ExtResource("3_jjscs")
+
+[node name="QuitBtn" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("4_6l88u")
+
+[node name="EmtpyLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/ReturnToMenuBtn" to="CenterContainer/VBoxContainer/VBoxContainer/ReturnToMenuBtn" method="_on_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/LevelSelectBtn" to="CenterContainer/VBoxContainer/VBoxContainer/LevelSelectBtn" method="_on_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/QuitBtn" to="CenterContainer/VBoxContainer/VBoxContainer/QuitBtn" method="_on_pressed"]

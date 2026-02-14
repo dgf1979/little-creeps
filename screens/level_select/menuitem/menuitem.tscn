@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://cs7wubrglakdu"]
+
+[ext_resource type="Texture2D" uid="uid://df5w866u72tq2" path="res://screens/level_select/menuitem/map_preview_placeholder.png" id="1_d47rw"]
+[ext_resource type="Script" uid="uid://onlyf0ass5j7" path="res://screens/level_select/menuitem/menuitem.gd" id="1_osied"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6trx"]
+bg_color = Color(0.23, 0.24916665, 0.46, 0.5686275)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.78040004, 0.8, 0.408, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[node name="MenuItem" type="Button" unique_id=1234614957]
+custom_minimum_size = Vector2(800, 300)
+mouse_default_cursor_shape = 2
+script = ExtResource("1_osied")
+
+[node name="Panel" type="Panel" parent="." unique_id=1708915279]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6trx")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=892744213]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer" unique_id=333343911]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="MapPreviewContainer" type="Control" parent="Panel/MarginContainer/HBoxContainer" unique_id=2024901484]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer/MapPreviewContainer" unique_id=2126857586]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer/HBoxContainer/MapPreviewContainer/VBoxContainer" unique_id=1825810544]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MapNameLbl" type="Label" parent="Panel/MarginContainer/HBoxContainer/MapPreviewContainer/VBoxContainer/CenterContainer" unique_id=1433391197]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Map Name"
+
+[node name="MapPreviewContainer" type="CenterContainer" parent="Panel/MarginContainer/HBoxContainer/MapPreviewContainer/VBoxContainer" unique_id=1559433448]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="MapPreview" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer/MapPreviewContainer/VBoxContainer/MapPreviewContainer" unique_id=1381662529]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_d47rw")
+
+[node name="MapDetailContainer" type="Control" parent="Panel/MarginContainer/HBoxContainer" unique_id=701718697]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsoai81p4wveo"]
+
+[ext_resource type="Script" uid="uid://diqpny0idtibv" path="res://screens/lose/restart_btn.gd" id="1_1aau8"]
+[ext_resource type="Script" uid="uid://hpjj8gqewwo5" path="res://screens/lose/return_to_menu_btn.gd" id="1_n7613"]
+[ext_resource type="Script" uid="uid://b4ruq4mpnpa14" path="res://screens/lose/level_select_btn.gd" id="2_iuk4n"]
+[ext_resource type="Script" uid="uid://cnwwn5f77eeim" path="res://screens/lose/quit_btn.gd" id="3_8c64a"]
+
+[node name="Lose" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 240
+
+[node name="LostLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "You Lose!"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RestartBtn" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Try Again"
+script = ExtResource("1_1aau8")
+
+[node name="ReturnToMenuBtn" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+script = ExtResource("1_n7613")
+
+[node name="LevelSelectBtn" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level Select"
+script = ExtResource("2_iuk4n")
+
+[node name="QuitBtn" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("3_8c64a")
+
+[node name="EmtpyLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/RestartBtn" to="CenterContainer/VBoxContainer/VBoxContainer/RestartBtn" method="_on_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/ReturnToMenuBtn" to="CenterContainer/VBoxContainer/VBoxContainer/ReturnToMenuBtn" method="_on_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/LevelSelectBtn" to="CenterContainer/VBoxContainer/VBoxContainer/LevelSelectBtn" method="_on_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/QuitBtn" to="CenterContainer/VBoxContainer/VBoxContainer/QuitBtn" method="_on_pressed"]
