@@ -25,7 +25,7 @@ Selection="*uid://dswrlnmfvjq5d"
 Enums="*uid://d0s1lpdvrsk7f"
 ImageUtil="*uid://cb57o47k7ur1b"
 ConfigUtil="*uid://bc4ndhimtdwhl"
-PathUtil="*uid://8pf6sjiw45gd"
+FSUtil="*uid://8pf6sjiw45gd"
 
 [display]
 

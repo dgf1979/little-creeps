@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://byf6b63ccju3m"]
+
+[ext_resource type="Texture2D" uid="uid://cofs0ad3muw8m" path="res://actors/creeps/debug_creep.png" id="1_cls5y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iegoc"]
+atlas = ExtResource("1_cls5y")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itif7"]
+atlas = ExtResource("1_cls5y")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0s8vp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iegoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itif7")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5xnwf"]
+
+[node name="Creep" type="CharacterBody2D" unique_id=1142720394]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=831783711]
+sprite_frames = SubResource("SpriteFrames_0s8vp")
+animation = &"walk"
+frame_progress = 0.3632115
+speed_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=507176051]
+shape = SubResource("CircleShape2D_5xnwf")

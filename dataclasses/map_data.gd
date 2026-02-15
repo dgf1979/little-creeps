@@ -5,7 +5,7 @@ enum WallMode { SIMPLE, COMPLEX }
 var map_dir_name: String
 var map_dir_path: String:
 	get: 
-		return PathUtil.append(Constants.MAPS_PATH, map_dir_name)
+		return Constants.MAPS_PATH.path_join(map_dir_name)
 var map_name: String
 var creep_spawn: Array[Vector2i] = []
 var creep_exit: Array[Vector2i] = []
@@ -15,11 +15,11 @@ var map_array: Array[Array] = [[]]
 const _block_char = "\u2588" # character code for solid block
 
 func load_preview_image() -> Texture2D:
-	var resource_path = PathUtil.append(map_dir_path, Constants.MAP_PREVIEW_FILE_NAME)
+	var resource_path = map_dir_path.path_join(Constants.MAP_PREVIEW_FILE_NAME)
 	return ImageUtil.load_texture_resource(resource_path)
 	
 func load_map_image() -> Texture2D:
-	var resource_path = PathUtil.append(map_dir_path, Constants.MAP_IMAGE_FILE_NAME)
+	var resource_path = map_dir_path.path_join(Constants.MAP_IMAGE_FILE_NAME)
 	return ImageUtil.load_texture_resource(resource_path)
 
 func to_dict() -> Dictionary:
