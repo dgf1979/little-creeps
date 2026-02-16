@@ -48,6 +48,6 @@ func load_creep_data_for_path(map_dir_name: String) -> Dictionary[String, CreepD
 		var cfg = FSUtil.get_file_as_config(creep_config_file)
 		var creep = CreepData.new()
 		creep.name = cfg.get_value("Creep","name")
-		creep.walk_anim = cfg.get_value("Creep","walk_anim")
+		creep.walk_anim_file_name = cfg.get_value("Creep","walk_anim_file_name")
 		creep_data.set(creep.name, creep)
 	return creep_data

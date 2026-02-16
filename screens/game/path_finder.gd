@@ -9,11 +9,12 @@ func _ready() -> void:
 	_grid.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
 	_grid.update()
+	var map_array := (%LevelData as LevelData).map_data.map_array
+	update_map(map_array)
 	
-	var map_data := (%LevelData as LevelData).map_data
-	
-	for rowcount in range(map_data.map_array.size()):
-		var row = map_data.map_array[rowcount]
+func update_map(map_array: Array[Array]) -> void:
+	for rowcount in range(map_array.size()):
+		var row = map_array[rowcount]
 		for colcount in range(row.size()):
 			var col = row[colcount]
 			var tile_type: Enums.TILE_TYPE = col
