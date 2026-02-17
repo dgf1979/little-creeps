@@ -51,3 +51,16 @@ func load_creep_data_for_path(map_dir_name: String) -> Dictionary[String, CreepD
 		creep.walk_anim_file_name = cfg.get_value("Creep","walk_anim_file_name")
 		creep_data.set(creep.name, creep)
 	return creep_data
+	
+func load_tower_data_for_path(map_dir_name: String) -> Dictionary[String, TowerData]:
+	var tower_data: Dictionary[String, TowerData]
+	var tower_dir_path = Constants.MAPS_PATH.path_join(map_dir_name).path_join("towers")
+	var tower_config_files = FSUtil.get_files_by_extension(tower_dir_path, ".cfg")
+	for tower_config_file in tower_config_files:
+		var cfg = FSUtil.get_file_as_config(tower_config_file)
+		var tower = TowerData.new()
+		tower.display_name = cfg.get_value("Tower", "display_name")
+		tower.sprite_file_name = cfg.get_value("Tower", "sprite_file_name")
+		tower.thumbnail_file_name = cfg.get_value("Tower", "thumbnail_file_name")
+		tower_data.set(tower.display_name, tower)
+	return tower_data
