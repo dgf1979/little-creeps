@@ -1,6 +1,6 @@
 extends GridContainer
 
-const TOWER_SELECT_SCN = preload("res://screens/game/ui/TowerSelect.tscn")
+const TOWER_SELECT_SCN = preload("res://screens/game/ui/towerselect/tower_select.tscn")
 
 func _ready() -> void:
 	for example in get_children(): example.queue_free()

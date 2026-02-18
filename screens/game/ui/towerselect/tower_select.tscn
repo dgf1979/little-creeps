@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://blakldrbf1qyr"]
 
 [ext_resource type="Texture2D" uid="uid://c4jorkvdcahdt" path="res://screens/game/maps/placeholder_tower.png" id="1_bpmnv"]
-[ext_resource type="Script" uid="uid://hmvvu378yjv7" path="res://screens/game/ui/tower_select.gd" id="1_llege"]
+[ext_resource type="Script" uid="uid://hmvvu378yjv7" path="res://screens/game/ui/towerselect/tower_select.gd" id="1_llege"]
+[ext_resource type="Script" uid="uid://qliy4fh0ptys" path="res://screens/game/ui/towerselect/icon_button.gd" id="3_rvee6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_llege"]
 
@@ -47,6 +48,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_llege")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_veib8")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y1ohl")
 icon = ExtResource("1_bpmnv")
+script = ExtResource("3_rvee6")
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1403639067]
 layout_mode = 2
@@ -63,3 +65,5 @@ text = "tower abcdefghijk"
 horizontal_alignment = 1
 autowrap_mode = 2
 uppercase = true
+
+[connection signal="pressed" from="MarginContainer/IconButton" to="MarginContainer/IconButton" method="_on_pressed"]

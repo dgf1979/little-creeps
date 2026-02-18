@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://blakldrbf1qyr"]
+
+[ext_resource type="Texture2D" uid="uid://c4jorkvdcahdt" path="res://screens/game/maps/placeholder_tower.png" id="1_bpmnv"]
+[ext_resource type="Script" uid="uid://hmvvu378yjv7" path="res://screens/game/ui/towerselect/tower_select.gd" id="1_llege"]
+[ext_resource type="Script" uid="uid://qliy4fh0ptys" path="res://screens/game/ui/towerselect/icon_button.gd" id="3_rvee6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_llege"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvee6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llege"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 1, 0, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_veib8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1ohl"]
+
+[node name="TowerSelect" type="VBoxContainer" unique_id=500759485]
+custom_minimum_size = Vector2(96, 128)
+offset_right = 96.0
+offset_bottom = 128.0
+theme_override_constants/separation = 0
+script = ExtResource("1_llege")
+
+[node name="MarginContainer" type="CenterContainer" parent="." unique_id=1244644051]
+layout_mode = 2
+
+[node name="IconButton" type="Button" parent="MarginContainer" unique_id=2098073229]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_llege")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rvee6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_llege")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_veib8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y1ohl")
+icon = ExtResource("1_bpmnv")
+script = ExtResource("3_rvee6")
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1403639067]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="Label" type="Label" parent="MarginContainer2" unique_id=776077685]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 12
+text = "tower abcdefghijk"
+horizontal_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[connection signal="pressed" from="MarginContainer/IconButton" to="MarginContainer/IconButton" method="_on_pressed"]

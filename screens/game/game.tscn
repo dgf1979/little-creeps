@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://l0v652x4yo8m"]
 
 [ext_resource type="Texture2D" uid="uid://cxwprsv2q8dx7" path="res://screens/game/maps/placeholder_background.png" id="1_yflor"]
+[ext_resource type="Script" uid="uid://b4jnhhflsrf7y" path="res://screens/game/tower_placement_cursor.gd" id="2_1ad28"]
 [ext_resource type="Script" uid="uid://b5r566wyhpn03" path="res://screens/game/ui/ui.gd" id="2_cpxdg"]
 [ext_resource type="Texture2D" uid="uid://cpyolfjqp7foh" path="res://screens/game/maps/placeholder_overlay.png" id="2_npd5f"]
 [ext_resource type="Script" uid="uid://dk6387oxkadpv" path="res://screens/game/creep_factory.gd" id="3_by56y"]
@@ -8,7 +9,7 @@
 [ext_resource type="Script" uid="uid://ctc1rxaw2lj3f" path="res://screens/game/tower_factory.gd" id="7_1jmhe"]
 [ext_resource type="Script" uid="uid://d0s2fmaay1l4v" path="res://screens/game/ui/debug/debug_panel.gd" id="7_cpxdg"]
 [ext_resource type="Script" uid="uid://bqu10w5b7uegr" path="res://screens/game/ui/tower_grid.gd" id="7_hehpx"]
-[ext_resource type="PackedScene" uid="uid://blakldrbf1qyr" path="res://screens/game/ui/TowerSelect.tscn" id="8_1jmhe"]
+[ext_resource type="PackedScene" uid="uid://blakldrbf1qyr" path="res://screens/game/ui/towerselect/tower_select.tscn" id="8_1jmhe"]
 [ext_resource type="Script" uid="uid://dxe73rl6y6vg6" path="res://screens/game/ui/debug/tabs/config_data/generate_sample_config_btn.gd" id="8_cpxdg"]
 [ext_resource type="Script" uid="uid://bc036isouqj1f" path="res://screens/game/ui/play_area.gd" id="8_lvnyp"]
 [ext_resource type="Texture2D" uid="uid://b18nr18y6vkpb" path="res://screens/game/maps/debug_tile.png" id="9_ou2j6"]
@@ -315,6 +316,13 @@ ok_button_text = "Yes"
 dialog_text = "Really Quit?"
 cancel_button_text = "No"
 script = ExtResource("10_kc255")
+
+[node name="TowerPlacementCursor" type="ColorRect" parent="UI" unique_id=1353382805]
+visible = false
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("2_1ad28")
 
 [connection signal="pressed" from="UI/TopRight/QuitBtn" to="UI/TopRight/QuitBtn" method="_on_pressed"]
 [connection signal="pressed" from="UI/BottomLeft/StartBtn" to="UI/PlayArea/CreepFactory" method="_on_start_btn_pressed"]
