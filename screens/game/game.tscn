@@ -4,12 +4,11 @@
 [ext_resource type="Script" uid="uid://b5r566wyhpn03" path="res://screens/game/ui/ui.gd" id="2_cpxdg"]
 [ext_resource type="Texture2D" uid="uid://cpyolfjqp7foh" path="res://screens/game/maps/placeholder_overlay.png" id="2_npd5f"]
 [ext_resource type="Script" uid="uid://dk6387oxkadpv" path="res://screens/game/creep_factory.gd" id="3_by56y"]
-[ext_resource type="Texture2D" uid="uid://c4jorkvdcahdt" path="res://screens/game/maps/placeholder_tower.png" id="3_npd5f"]
-[ext_resource type="Theme" uid="uid://c1nfeulybqvmn" path="res://screens/game/ui/tower_label.tres" id="4_npd5f"]
 [ext_resource type="Script" uid="uid://ba8ubav4fw0bh" path="res://screens/game/ui/quit_btn.gd" id="5_18b3j"]
 [ext_resource type="Script" uid="uid://ctc1rxaw2lj3f" path="res://screens/game/tower_factory.gd" id="7_1jmhe"]
 [ext_resource type="Script" uid="uid://d0s2fmaay1l4v" path="res://screens/game/ui/debug/debug_panel.gd" id="7_cpxdg"]
-[ext_resource type="Script" uid="uid://cotfbfuwfrt6x" path="res://screens/game/ui/selection_area.gd" id="7_hehpx"]
+[ext_resource type="Script" uid="uid://bqu10w5b7uegr" path="res://screens/game/ui/tower_grid.gd" id="7_hehpx"]
+[ext_resource type="PackedScene" uid="uid://blakldrbf1qyr" path="res://screens/game/ui/TowerSelect.tscn" id="8_1jmhe"]
 [ext_resource type="Script" uid="uid://dxe73rl6y6vg6" path="res://screens/game/ui/debug/tabs/config_data/generate_sample_config_btn.gd" id="8_cpxdg"]
 [ext_resource type="Script" uid="uid://bc036isouqj1f" path="res://screens/game/ui/play_area.gd" id="8_lvnyp"]
 [ext_resource type="Texture2D" uid="uid://b18nr18y6vkpb" path="res://screens/game/maps/debug_tile.png" id="9_ou2j6"]
@@ -152,261 +151,46 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "START"
 
-[node name="SelectionArea" type="Control" parent="UI" unique_id=305452959]
-anchors_preset = 0
+[node name="SelectionArea" type="MarginContainer" parent="UI" unique_id=1440601758]
+layout_mode = 0
 offset_left = 992.0
 offset_top = 96.0
 offset_right = 1408.0
-offset_bottom = 896.0
-script = ExtResource("7_hehpx")
+offset_bottom = 372.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 16
 
 [node name="TowerGrid" type="GridContainer" parent="UI/SelectionArea" unique_id=2040756801]
-layout_direction = 2
-layout_mode = 1
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 386.0
-offset_bottom = 288.0
-theme_override_constants/h_separation = 32
-theme_override_constants/v_separation = 64
-columns = 4
-
-[node name="Tower1" type="TextureButton" parent="UI/SelectionArea/TowerGrid" unique_id=915315508]
-z_index = 1
 layout_mode = 2
-texture_normal = ExtResource("3_npd5f")
-
-[node name="Tower2" type="TextureButton" parent="UI/SelectionArea/TowerGrid" unique_id=1637568764]
-z_index = 1
-layout_mode = 2
-texture_normal = ExtResource("3_npd5f")
-
-[node name="Tower3" type="TextureButton" parent="UI/SelectionArea/TowerGrid" unique_id=963447722]
-z_index = 1
-layout_mode = 2
-texture_normal = ExtResource("3_npd5f")
-
-[node name="Tower4" type="TextureButton" parent="UI/SelectionArea/TowerGrid" unique_id=2117660115]
-z_index = 1
-layout_mode = 2
-texture_normal = ExtResource("3_npd5f")
-
-[node name="Tower5" type="TextureButton" parent="UI/SelectionArea/TowerGrid" unique_id=697344819]
-z_index = 1
-layout_mode = 2
-texture_normal = ExtResource("3_npd5f")
-
-[node name="Tower6" type="TextureButton" parent="UI/SelectionArea/TowerGrid" unique_id=671226078]
-z_index = 1
-layout_mode = 2
-texture_normal = ExtResource("3_npd5f")
-
-[node name="Tower7" type="TextureButton" parent="UI/SelectionArea/TowerGrid" unique_id=1793721417]
-z_index = 1
-layout_mode = 2
-texture_normal = ExtResource("3_npd5f")
-
-[node name="Tower8" type="TextureButton" parent="UI/SelectionArea/TowerGrid" unique_id=1419039054]
-z_index = 1
-layout_mode = 2
-texture_normal = ExtResource("3_npd5f")
-
-[node name="TowerLabelGrid" type="GridContainer" parent="UI/SelectionArea" unique_id=887513285]
-layout_direction = 2
-layout_mode = 1
-offset_left = 16.0
-offset_top = 96.0
-offset_right = 400.0
-offset_bottom = 288.0
-theme = ExtResource("4_npd5f")
 theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 64
+theme_override_constants/v_separation = 32
 columns = 4
+script = ExtResource("7_hehpx")
 
-[node name="MarginContainer1" type="MarginContainer" parent="UI/SelectionArea/TowerLabelGrid" unique_id=513166877]
-custom_minimum_size = Vector2(96, 64)
+[node name="TowerSelect" parent="UI/SelectionArea/TowerGrid" unique_id=949077178 instance=ExtResource("8_1jmhe")]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 8
 
-[node name="Panel" type="Panel" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer1" unique_id=890592806]
+[node name="TowerSelect2" parent="UI/SelectionArea/TowerGrid" unique_id=631361514 instance=ExtResource("8_1jmhe")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="Tower1Lbl" type="Label" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer1/Panel" unique_id=1220408909 groups=["TowerSelectionLabels"]]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "TOWER 1
-Wall"
-horizontal_alignment = 1
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/SelectionArea/TowerLabelGrid" unique_id=1200577672]
-custom_minimum_size = Vector2(96, 64)
+[node name="TowerSelect3" parent="UI/SelectionArea/TowerGrid" unique_id=2074731378 instance=ExtResource("8_1jmhe")]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 8
 
-[node name="Panel" type="Panel" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer2" unique_id=783155202]
+[node name="TowerSelect4" parent="UI/SelectionArea/TowerGrid" unique_id=2124216382 instance=ExtResource("8_1jmhe")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="Tower2Lbl" type="Label" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer2/Panel" unique_id=696000675 groups=["TowerSelectionLabels"]]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "TOWER 2"
-horizontal_alignment = 1
-
-[node name="MarginContainer3" type="MarginContainer" parent="UI/SelectionArea/TowerLabelGrid" unique_id=2055815724]
-custom_minimum_size = Vector2(96, 64)
+[node name="TowerSelect5" parent="UI/SelectionArea/TowerGrid" unique_id=2022401995 instance=ExtResource("8_1jmhe")]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 8
 
-[node name="Panel" type="Panel" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer3" unique_id=1811104485]
+[node name="TowerSelect6" parent="UI/SelectionArea/TowerGrid" unique_id=1451531387 instance=ExtResource("8_1jmhe")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="Tower3Lbl" type="Label" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer3/Panel" unique_id=1804609785 groups=["TowerSelectionLabels"]]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "TOWER 3"
-horizontal_alignment = 1
-
-[node name="MarginContainer4" type="MarginContainer" parent="UI/SelectionArea/TowerLabelGrid" unique_id=192003037]
-custom_minimum_size = Vector2(96, 64)
+[node name="TowerSelect7" parent="UI/SelectionArea/TowerGrid" unique_id=195948058 instance=ExtResource("8_1jmhe")]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 8
 
-[node name="Panel" type="Panel" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer4" unique_id=1269239989]
+[node name="TowerSelect8" parent="UI/SelectionArea/TowerGrid" unique_id=136102591 instance=ExtResource("8_1jmhe")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Tower4Lbl" type="Label" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer4/Panel" unique_id=1734595069 groups=["TowerSelectionLabels"]]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "TOWER 4"
-horizontal_alignment = 1
-
-[node name="MarginContainer5" type="MarginContainer" parent="UI/SelectionArea/TowerLabelGrid" unique_id=2095901028]
-custom_minimum_size = Vector2(96, 64)
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 8
-
-[node name="Panel" type="Panel" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer5" unique_id=1131731482]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Tower5Lbl" type="Label" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer5/Panel" unique_id=1993275133 groups=["TowerSelectionLabels"]]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "TOWER 5"
-horizontal_alignment = 1
-
-[node name="MarginContainer6" type="MarginContainer" parent="UI/SelectionArea/TowerLabelGrid" unique_id=1493683826]
-custom_minimum_size = Vector2(96, 64)
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 8
-
-[node name="Panel" type="Panel" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer6" unique_id=1473519979]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Tower6Lbl" type="Label" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer6/Panel" unique_id=715471592 groups=["TowerSelectionLabels"]]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "TOWER 6"
-horizontal_alignment = 1
-
-[node name="MarginContainer7" type="MarginContainer" parent="UI/SelectionArea/TowerLabelGrid" unique_id=1475634268]
-custom_minimum_size = Vector2(96, 64)
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 8
-
-[node name="Panel" type="Panel" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer7" unique_id=839787449]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Tower7Lbl" type="Label" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer7/Panel" unique_id=142978991 groups=["TowerSelectionLabels"]]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "TOWER 7"
-horizontal_alignment = 1
-
-[node name="MarginContainer8" type="MarginContainer" parent="UI/SelectionArea/TowerLabelGrid" unique_id=1890995428]
-custom_minimum_size = Vector2(96, 64)
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 8
-
-[node name="Panel" type="Panel" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer8" unique_id=674595414]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Tower8Lbl" type="Label" parent="UI/SelectionArea/TowerLabelGrid/MarginContainer8/Panel" unique_id=1171349941 groups=["TowerSelectionLabels"]]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "TOWER 8"
-horizontal_alignment = 1
 
 [node name="PlayArea" type="TextureRect" parent="UI" unique_id=862602090]
 layout_mode = 0
