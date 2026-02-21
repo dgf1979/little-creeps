@@ -1,7 +1,6 @@
 extends TileMapLayer
 
-@onready var map_data = (%LevelData as LevelData).map_data
-@onready var pathfinder = (%PathFinder as PathFinder)
+@onready var map: Map = %MapFactory.get_map()
 
 const walkable_color = Color(0.0,0.0,0.0,0.7)
 const blocked_color = Color(1.0,1.0,1.0,0.7)
@@ -13,24 +12,21 @@ func refresh() -> void:
 	queue_redraw()
 	
 func _draw() -> void:
-	var map = map_data.map_array
-	for rowcount in range(map.size()):
-		var row = map[rowcount]
-		for colcount in range(row.size()):
-			var tile_type: Enums.TILE_TYPE = row[colcount]
-			var tile_rect = get_tile_rect_at_pos(Vector2i(colcount, rowcount))
-			var color = walkable_color
-			match tile_type:
-				Enums.TILE_TYPE.WALL:
-					color = blocked_color
-				Enums.TILE_TYPE.SPAWN:
-					color = spawn_color
-				Enums.TILE_TYPE.EXIT:
-					color = exit_color
+	for coord in map.coordinates():
+		var tile_type: Enums.TILE_TYPE = map.get_type(coord)
+		var tile_rect = get_tile_rect_at_pos(coord)
+		var color = walkable_color
+		match tile_type:
+			Enums.TILE_TYPE.WALL:
+				color = blocked_color
+			Enums.TILE_TYPE.SPAWN:
+				color = spawn_color
+			Enums.TILE_TYPE.EXIT:
+				color = exit_color
+		
+		draw_rect(tile_rect, color)
 			
-			draw_rect(tile_rect, color)
-			
-	var path = pathfinder.find_path(map_data.creep_spawn[0], map_data.creep_exit[0])
+	var path = map.find_path(map.spawn_point_get_next(), map.spawn_exit_get_nearest(map.spawn_point_get_next()))
 	
 	for i in range(path.size()):
 		if i >= path.size() - 1: return

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://byf6b63ccju3m"]
 
-[ext_resource type="Texture2D" uid="uid://cofs0ad3muw8m" path="res://actors/creeps/debug_creep.png" id="1_cls5y"]
-[ext_resource type="Script" uid="uid://c8xox1wyel72s" path="res://actors/creeps/creep.gd" id="1_iegoc"]
-[ext_resource type="Script" uid="uid://cof4i8siwtoj1" path="res://actors/creeps/sprite.gd" id="3_itif7"]
+[ext_resource type="Texture2D" uid="uid://cofs0ad3muw8m" path="res://entities/creeps/debug_creep.png" id="1_cls5y"]
+[ext_resource type="Script" uid="uid://c8xox1wyel72s" path="res://entities/creeps/creep.gd" id="1_iegoc"]
+[ext_resource type="Script" uid="uid://cof4i8siwtoj1" path="res://entities/creeps/sprite.gd" id="3_itif7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iegoc"]
 atlas = ExtResource("1_cls5y")

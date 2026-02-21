@@ -20,30 +20,30 @@ func load_map_image() -> Texture2D:
 	var resource_path = map_dir_path.path_join(Constants.MAP_IMAGE_FILE_NAME)
 	return ImageUtil.load_texture_resource(resource_path)
 	
-const _block_char = "\u2588" # character code for solid block
-func map_to_debug_string() -> String:
-	var outstring = ""
-	for row in range(map_array.size()):
-		for col in range(map_array[row].size()):
-			var tile_number = map_array[row][col]
-			var c
-			match tile_number:
-				Enums.TILE_TYPE.INVALID:
-					c = "!"
-				Enums.TILE_TYPE.PATH:
-					c = " "
-				Enums.TILE_TYPE.SPAWN:
-					c = "S"
-				Enums.TILE_TYPE.EXIT:
-					c = "E"
-				Enums.TILE_TYPE.WALL:
-					c = _block_char
-				_:
-					c = "?"
-			outstring += c
-		outstring += "\n"
-	outstring += "KEY: ! = Invalid, ' ' = Walkable (empty), S = Creep Spawn, E = Creep Exit, " + _block_char + " = Unwalkable (wall)"
-	return outstring
+#const _block_char = "\u2588" # character code for solid block
+#func map_to_debug_string() -> String:
+	#var outstring = ""
+	#for row in range(map_array.size()):
+		#for col in range(map_array[row].size()):
+			#var tile_number = map_array[row][col]
+			#var c
+			#match tile_number:
+				#Enums.TILE_TYPE.INVALID:
+					#c = "!"
+				#Enums.TILE_TYPE.PATH:
+					#c = " "
+				#Enums.TILE_TYPE.SPAWN:
+					#c = "S"
+				#Enums.TILE_TYPE.EXIT:
+					#c = "E"
+				#Enums.TILE_TYPE.WALL:
+					#c = _block_char
+				#_:
+					#c = "?"
+			#outstring += c
+		#outstring += "\n"
+	#outstring += "KEY: ! = Invalid, ' ' = Walkable (empty), S = Creep Spawn, E = Creep Exit, " + _block_char + " = Unwalkable (wall)"
+	#return outstring
 	
 #func to_dict() -> Dictionary:
 	#var d = {}

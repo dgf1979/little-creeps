@@ -7,4 +7,4 @@ func setup(tower_data: TowerData) -> void:
 	icon = tower_data.load_thumbnail_texture()
 
 func _on_pressed() -> void:
-	Event.tower_selected.emit(_tower_data)
+	Event.tower_select.emit(_tower_data)
