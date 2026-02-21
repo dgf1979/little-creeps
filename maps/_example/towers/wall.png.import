@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5up40hkvqo5w"
-path="res://.godot/imported/frogboy.png-eff0bb32bd9cadb32659314963cdb90b.ctex"
+uid="uid://b5l2mk2oryw6g"
+path="res://.godot/imported/wall.png-48b371feaff546c711138bb3e3b458a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://screens/game/maps/_example/creeps/frogboy.png"
-dest_files=["res://.godot/imported/frogboy.png-eff0bb32bd9cadb32659314963cdb90b.ctex"]
+source_file="res://maps/_example/towers/wall.png"
+dest_files=["res://.godot/imported/wall.png-48b371feaff546c711138bb3e3b458a8.ctex"]
 
 [params]
 

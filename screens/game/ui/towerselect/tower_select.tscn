@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blakldrbf1qyr"]
 
-[ext_resource type="Texture2D" uid="uid://c4jorkvdcahdt" path="res://screens/game/maps/placeholder_tower.png" id="1_bpmnv"]
+[ext_resource type="Texture2D" uid="uid://c4jorkvdcahdt" path="res://maps/placeholder_tower.png" id="1_bpmnv"]
 [ext_resource type="Script" uid="uid://hmvvu378yjv7" path="res://screens/game/ui/towerselect/tower_select.gd" id="1_llege"]
 [ext_resource type="Script" uid="uid://qliy4fh0ptys" path="res://screens/game/ui/towerselect/icon_button.gd" id="3_rvee6"]
 

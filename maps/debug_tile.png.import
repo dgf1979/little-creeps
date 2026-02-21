@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4jorkvdcahdt"
-path="res://.godot/imported/placeholder_tower.png-0a978ec53e1e002e37d40b8fd79c17e6.ctex"
+uid="uid://b18nr18y6vkpb"
+path="res://.godot/imported/debug_tile.png-7b33dc95816eb750ed63a59e586ac8d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://screens/game/maps/placeholder_tower.png"
-dest_files=["res://.godot/imported/placeholder_tower.png-0a978ec53e1e002e37d40b8fd79c17e6.ctex"]
+source_file="res://maps/debug_tile.png"
+dest_files=["res://.godot/imported/debug_tile.png-7b33dc95816eb750ed63a59e586ac8d2.ctex"]
 
 [params]
 

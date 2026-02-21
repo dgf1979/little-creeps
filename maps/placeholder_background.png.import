@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b18nr18y6vkpb"
-path="res://.godot/imported/debug_tile.png-ff75ad4ce88ea57dc729ed65c75fc490.ctex"
+uid="uid://cxwprsv2q8dx7"
+path="res://.godot/imported/placeholder_background.png-18d5ce289b016700676a9636a09040fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://screens/game/maps/debug_tile.png"
-dest_files=["res://.godot/imported/debug_tile.png-ff75ad4ce88ea57dc729ed65c75fc490.ctex"]
+source_file="res://maps/placeholder_background.png"
+dest_files=["res://.godot/imported/placeholder_background.png-18d5ce289b016700676a9636a09040fb.ctex"]
 
 [params]
 

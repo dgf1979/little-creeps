@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxwprsv2q8dx7"
-path="res://.godot/imported/placeholder_background.png-800e399dfddf253e267b8c6478bf3acc.ctex"
+uid="uid://cpyolfjqp7foh"
+path="res://.godot/imported/placeholder_overlay.png-b4f96e012b728d07b1a658b741ade9c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://screens/game/maps/placeholder_background.png"
-dest_files=["res://.godot/imported/placeholder_background.png-800e399dfddf253e267b8c6478bf3acc.ctex"]
+source_file="res://maps/placeholder_overlay.png"
+dest_files=["res://.godot/imported/placeholder_overlay.png-b4f96e012b728d07b1a658b741ade9c1.ctex"]
 
 [params]
 

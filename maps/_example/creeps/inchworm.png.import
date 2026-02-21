@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t8qagy6ccd3y"
-path="res://.godot/imported/map_preview.bmp-72f95ceb7391644972fd111ea98b2547.ctex"
+uid="uid://b87qhpdg0rq42"
+path="res://.godot/imported/inchworm.png-5f2254c32c331c150e92ca45992946a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://screens/game/maps/_example/map_preview.bmp"
-dest_files=["res://.godot/imported/map_preview.bmp-72f95ceb7391644972fd111ea98b2547.ctex"]
+source_file="res://maps/_example/creeps/inchworm.png"
+dest_files=["res://.godot/imported/inchworm.png-5f2254c32c331c150e92ca45992946a6.ctex"]
 
 [params]
 
