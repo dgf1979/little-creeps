@@ -6,12 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://cpyolfjqp7foh" path="res://maps/placeholder_overlay.png" id="2_npd5f"]
 [ext_resource type="Script" uid="uid://dk6387oxkadpv" path="res://screens/game/creep_factory.gd" id="3_by56y"]
 [ext_resource type="Script" uid="uid://ba8ubav4fw0bh" path="res://screens/game/ui/quit_btn.gd" id="5_18b3j"]
+[ext_resource type="Script" uid="uid://dh0uehrqmitbu" path="res://screens/game/ui/wave_countdown_lbl.gd" id="6_p21lm"]
+[ext_resource type="Script" uid="uid://cv03x7rkyjqj" path="res://screens/game/ui/start_btn.gd" id="6_wh4ub"]
 [ext_resource type="Script" uid="uid://ctc1rxaw2lj3f" path="res://screens/game/tower_factory.gd" id="7_1jmhe"]
 [ext_resource type="Script" uid="uid://d0s2fmaay1l4v" path="res://screens/game/ui/debug/debug_panel.gd" id="7_cpxdg"]
 [ext_resource type="Script" uid="uid://bqu10w5b7uegr" path="res://screens/game/ui/tower_grid.gd" id="7_hehpx"]
 [ext_resource type="PackedScene" uid="uid://blakldrbf1qyr" path="res://screens/game/ui/towerselect/tower_select.tscn" id="8_1jmhe"]
 [ext_resource type="Script" uid="uid://dxe73rl6y6vg6" path="res://screens/game/ui/debug/tabs/config_data/generate_sample_config_btn.gd" id="8_cpxdg"]
 [ext_resource type="Script" uid="uid://bc036isouqj1f" path="res://screens/game/ui/play_area.gd" id="8_lvnyp"]
+[ext_resource type="Script" uid="uid://t6ubpxnffndv" path="res://screens/game/wave_manager.gd" id="9_1ad28"]
 [ext_resource type="Texture2D" uid="uid://b18nr18y6vkpb" path="res://maps/debug_tile.png" id="9_ou2j6"]
 [ext_resource type="Script" uid="uid://c0ar8ydxu30g" path="res://screens/game/ui/quit_confirmation.gd" id="10_kc255"]
 [ext_resource type="Script" uid="uid://bupn2chldges8" path="res://screens/game/map_factory.gd" id="11_1ad28"]
@@ -20,6 +23,12 @@
 [ext_resource type="Texture2D" uid="uid://b7rdthyl1qavh" path="res://screens/game/transparent_tile.png" id="13_y2n64"]
 [ext_resource type="Script" uid="uid://cfvecuginhhla" path="res://screens/game/ui/debug/tabs/visual_toggles/toggle_walkable.gd" id="14_a032w"]
 [ext_resource type="Script" uid="uid://85drkfo45wpt" path="res://screens/game/active_map.gd" id="14_n6j5y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p21lm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikmaa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h8058"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n6j5y"]
 texture = ExtResource("13_y2n64")
@@ -143,10 +152,55 @@ offset_top = 896.0
 offset_right = 960.0
 offset_bottom = 992.0
 
-[node name="StartBtn" type="Button" parent="UI/BottomLeft" unique_id=489139887]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/BottomLeft" unique_id=1654884552]
 layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Panel" type="Panel" parent="UI/BottomLeft/HBoxContainer" unique_id=1154667384]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_p21lm")
+
+[node name="WaveCountdownLbl" type="Label" parent="UI/BottomLeft/HBoxContainer/Panel" unique_id=32064664]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 9.0
+offset_right = 13.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Seconds to next wave: 99"
+vertical_alignment = 1
+script = ExtResource("6_p21lm")
+
+[node name="Panel2" type="Panel" parent="UI/BottomLeft/HBoxContainer" unique_id=553180879]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ikmaa")
+
+[node name="StartBtn" type="Button" parent="UI/BottomLeft/HBoxContainer/Panel2" unique_id=489139887]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -32.0
+offset_right = 64.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 text = "START"
+script = ExtResource("6_wh4ub")
+
+[node name="Panel3" type="Panel" parent="UI/BottomLeft/HBoxContainer" unique_id=1546300427]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h8058")
 
 [node name="SelectionArea" type="MarginContainer" parent="UI" unique_id=1440601758]
 layout_mode = 0
@@ -196,6 +250,13 @@ offset_top = 96.0
 offset_right = 960.0
 offset_bottom = 896.0
 script = ExtResource("8_lvnyp")
+
+[node name="WaveManager" type="Node" parent="UI/PlayArea" unique_id=537215318]
+unique_name_in_owner = true
+script = ExtResource("9_1ad28")
+
+[node name="WaveTimer" type="Timer" parent="UI/PlayArea/WaveManager" unique_id=1251179323]
+one_shot = true
 
 [node name="CreepFactory" type="Node" parent="UI/PlayArea" unique_id=1062479514]
 unique_name_in_owner = true
@@ -331,7 +392,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [connection signal="pressed" from="UI/TopRight/QuitBtn" to="UI/TopRight/QuitBtn" method="_on_pressed"]
-[connection signal="pressed" from="UI/BottomLeft/StartBtn" to="UI/PlayArea/CreepFactory" method="_on_start_btn_pressed"]
+[connection signal="timeout" from="UI/PlayArea/WaveManager/WaveTimer" to="UI/PlayArea/WaveManager" method="_on_wave_timer_timeout"]
 [connection signal="visibility_changed" from="UI/PlayArea/DebugMap" to="UI/PlayArea/DebugMap" method="_on_visibility_changed"]
 [connection signal="pressed" from="UI/DebugPanel/VBoxContainer/TabContainer/Config Data/GridContainer/GenerateSampleConfigBtn" to="UI/DebugPanel/VBoxContainer/TabContainer/Config Data/GridContainer/GenerateSampleConfigBtn" method="_on_pressed"]
 [connection signal="toggled" from="UI/DebugPanel/VBoxContainer/TabContainer/Visual Toggles/MarginContainer/VBoxContainer/ToggleWalkable" to="UI/DebugPanel/VBoxContainer/TabContainer/Visual Toggles/MarginContainer/VBoxContainer/ToggleWalkable" method="_on_toggled"]

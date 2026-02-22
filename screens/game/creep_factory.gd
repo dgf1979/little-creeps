@@ -18,11 +18,11 @@ func _build_creep(creep_data: CreepData) -> Creep:
 	_tracked_creeps.set(creep_instance.get_instance_id(), creep_instance)
 	return creep_instance
 
-func _on_start_btn_pressed() -> void:
-	var creep_name = creep_catalog.keys()[1]
-	var creep1: Creep = _build_creep(creep_catalog[creep_name])
-	add_child(creep1)
-	Event.creep_spawn.emit(creep1)
+#func _on_start_btn_pressed() -> void:
+	#var creep_name = creep_catalog.keys()[1]
+	#var creep1: Creep = _build_creep(creep_catalog[creep_name])
+	#add_child(creep1)
+	#Event.creep_spawn.emit(creep1)
 	
 func _on_creep_elimination(creep: Creep) -> void:
 	_tracked_creeps.erase(creep.get_instance_id())

@@ -64,3 +64,19 @@ func load_tower_data_for_path(map_dir_name: String) -> Dictionary[String, TowerD
 		tower.thumbnail_file_name = cfg.get_value("Tower", "thumbnail_file_name")
 		tower_data.set(tower.display_name, tower)
 	return tower_data
+
+func load_wave_data_for_path(map_dir_name: String) -> Array[WaveData]:
+	var wave_data_config_file_path = Constants.MAPS_PATH.path_join(map_dir_name).path_join(Constants.MAP_WAVE_CONFIG_FILE_NAME)
+	var cfg = FSUtil.get_file_as_config(wave_data_config_file_path)
+	var waves: Array[WaveData] = []
+	for i in range(1, 99):
+		var wave_section_name = "Wave" + str(i)
+		if not cfg.has_section(wave_section_name): break
+		var wave_data := WaveData.new()
+		wave_data.count = cfg.get_value(wave_section_name, "count")
+		wave_data.creep_name = cfg.get_value(wave_section_name, "creep_name")
+		wave_data.duration = cfg.get_value(wave_section_name, "duration")
+		waves.append(wave_data)
+
+	return waves
+	

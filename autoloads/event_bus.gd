@@ -23,10 +23,15 @@ signal creep_exit(creep: Creep)
 @warning_ignore("unused_signal")
 signal creep_elimination(creep: Creep)
 
+#GAME
+@warning_ignore("unused_signal")
+signal game_start()
+@warning_ignore("unused_signal")
+signal game_pause()
 
-
-
-
+#WAVE 
+@warning_ignore("unused_signal")
+signal wave_countdown_tick(seconds_left: int)
 
 
 # debugging
@@ -40,3 +45,8 @@ func _ready() -> void:
 	creep_spawn.connect(func(_x): print_debug("creep_spawn"))
 	creep_exit.connect(func(_x): print_debug("creep_exit"))
 	creep_elimination.connect(func(_x): print_debug("creep_elimination"))
+	
+	game_start.connect(func(): print_debug("game_start"))
+	game_pause.connect(func(): print_debug("game_pause"))
+	
+	wave_countdown_tick.connect(func(s): print_debug("wave_countdown_tick=" + str(s)))
