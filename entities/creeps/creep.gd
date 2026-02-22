@@ -3,9 +3,9 @@ class_name Creep
 
 var token_value: int = 10
 var hit_points: int = 20
-var speed: int = 96
+var speed: int = 64
 var _path: Array[Vector2] = []
-var _path_count: = 0
+var _started: bool = false
 
 #PUBLIC
 func configure(creep_data: CreepData) -> void:
@@ -18,10 +18,26 @@ func configure(creep_data: CreepData) -> void:
 		
 func set_path(global_path: Array[Vector2]) -> void:
 	_path = global_path
-	if _path_count == 0: position = _path[0]
-	_path_count += 1
+	
+func start() -> void:
+	if _path.is_empty(): push_error("must set a path before calling start!")
+	_fudge(_path[0])
+	position = _path[0]
+	var random_start_delay = randf_range(0.0, 2.0)
+	await get_tree().create_timer(random_start_delay).timeout
+	_started = true
+	visible = true
 
 #PRIVATE
+
+# the path is center of each tile, but I want to spead the creeps out a bit
+func _fudge(pos: Vector2) -> void:
+	var offset = Vector2(randi_range(-15, 15), randi_range(-15, 15))
+	pos += offset
+
+func _ready() -> void:
+	visible = false # hide until we start
+
 func _exit_reached() -> void:
 	Event.creep_exit.emit(self)
 	
@@ -29,8 +45,8 @@ func _destroyed() -> void:
 	Event.creep_eliminated.emit(self)
 	
 func _process(_delta: float) -> void:
-	# if no path, don't move
-	if _path.is_empty(): return
+	# if not started, don't move
+	if not _started: return
 
 	var direction: Vector2 = global_position.direction_to(_path[0])
 	look_at(_path[0])

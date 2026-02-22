@@ -4,15 +4,17 @@ class_name ActiveMap
 @onready var map: Map = %MapFactory.get_map()
 
 func _ready() -> void:
+	Event.creep_spawn.connect(_on_creep_spawn)
 	clear() 
 	for coordinate in map.coordinates():
 		set_cell(coordinate, 0, Vector2i(0,0))
 		
 func get_global_path_from_spawn() -> Array[Vector2]:
-	var start = map.spawn_point_get_random()
+	var start = map.spawn_point_get_next()
 	var end = map.spawn_exit_get_nearest(start) 
 	var map_path = map.find_path(start, end)
-	return path_to_global(map_path)
+	var global_path = path_to_global(map_path)
+	return global_path.duplicate()
 
 func tilemap_to_global(xy: Vector2i) -> Vector2:
 	return to_global(map_to_local(xy))
@@ -65,5 +67,11 @@ func _get_hovered_tiles_for(map_pos: Vector2i) -> Array[Vector2i]:
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("right_mouse_click")):
 		Event.tower_select_cancel.emit()
+		
+func _on_creep_spawn(creep: Creep) -> void:
+	var path = get_global_path_from_spawn()
+	creep.set_path(path)
+	creep.start()
+	
 		
 	

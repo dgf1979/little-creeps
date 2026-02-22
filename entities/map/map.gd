@@ -53,11 +53,6 @@ func walkable(position: Vector2i) -> bool:
 	return _walkable[position]
 
 var _last_spawn_point_idx = 0
-func spawn_point_get_random() -> Vector2i:
-	var random_index = randi_range(0, _map_data.creep_spawn.size() - 1)
-	_last_spawn_point_idx = random_index
-	return _map_data.creep_spawn[_last_spawn_point_idx]
-
 func spawn_point_get_next() -> Vector2i:
 	if _last_spawn_point_idx == _map_data.creep_spawn.size() -1:
 		_last_spawn_point_idx = 0

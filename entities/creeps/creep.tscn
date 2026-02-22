@@ -13,6 +13,7 @@ atlas = ExtResource("1_cls5y")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0s8vp"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -40,3 +41,4 @@ script = ExtResource("3_itif7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=507176051]
 shape = SubResource("CircleShape2D_5xnwf")
+disabled = true

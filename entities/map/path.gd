@@ -18,5 +18,5 @@ func sync(map: Map) -> void:
 func find_path(from: Vector2i, to: Vector2i) -> Array[Vector2i]:
 	var path = _grid.get_point_path(from, to)
 	var converted: Array[Vector2i]
-	converted.assign(path.duplicate())
-	return converted
+	converted.assign(path)
+	return converted.duplicate()
