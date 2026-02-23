@@ -47,7 +47,7 @@ func all_buildable(position_list: Array[Vector2i]) -> bool:
 	return true
 	
 func buildable(position: Vector2i) -> bool:
-	return _buildable[position]
+	return _buildable.has(position) and _buildable[position]
 	
 func walkable(position: Vector2i) -> bool:
 	return _walkable[position]

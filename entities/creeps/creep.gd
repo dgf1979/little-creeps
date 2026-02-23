@@ -21,7 +21,7 @@ func set_path(global_path: Array[Vector2]) -> void:
 	
 func start() -> void:
 	if _path.is_empty(): push_error("must set a path before calling start!")
-	_fudge(_path[0])
+	_path[0] = _fudge(_path[0])
 	position = _path[0]
 	var random_start_delay = randf_range(0.0, 2.0)
 	await get_tree().create_timer(random_start_delay).timeout
@@ -30,10 +30,11 @@ func start() -> void:
 
 #PRIVATE
 
-# the path is center of each tile, but I want to spead the creeps out a bit
-func _fudge(pos: Vector2) -> void:
-	var offset = Vector2(randi_range(-15, 15), randi_range(-15, 15))
-	pos += offset
+# the path is center of each tile, but I want to spread the creeps out a bit
+func _fudge(pos: Vector2) -> Vector2:
+	var px = Constants.MAP_TILE_SIZE_PX * 0.5 # half the size of a tile
+	var offset = Vector2(randi_range(-px, px), randi_range(-px, px))
+	return pos + offset
 
 func _ready() -> void:
 	visible = false # hide until we start
