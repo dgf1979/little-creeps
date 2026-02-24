@@ -41,23 +41,44 @@ const tile_offset = Vector2(Constants.MAP_TILE_SIZE_PX * 0.5, Constants.MAP_TILE
 const actor_offset = Vector2(Constants.MAP_ACTOR_SIZE_PX * 0.5, Constants.MAP_ACTOR_SIZE_PX * 0.5)
 const NO_TILE = -1 #disambiguate the magic number for no tile
 func cursor_snap_to_map(cursor: TowerPacementCursor) -> void:
+	# outside the tilemap, do not snap
 	if _hovered_tile_id() == NO_TILE:
+		# adjust the actual cursor to half the size the cursor sprite to roughly center
 		cursor.position = get_global_mouse_position() - actor_offset
 		cursor.can_place_tower(false)
 		return
 	
-	# since the cursor sprite is 2x larger than a cell in both directions, snap it to the prior row/column of the grid	
+	# inside the tile map, translate teh real cursor position to the hovered tile grid position
 	var tile_map_pos = tilemap_from_global(get_global_mouse_position())
+	
+	# since the cursor sprite is 2x larger than a cell in both directions,
+	# translate it to the prior row/column of the grid when it is over the last x/y grid position
 	if tile_map_pos.x == Constants.MAP_TILE_WIDTH - 1 or tile_map_pos.y == Constants.MAP_TILE_HEIGHT - 1:
 		tile_map_pos -= Vector2i(1, 1)
 		
-	var hovered_tiles = _get_hovered_tiles_for(tile_map_pos)
-	var can_build = map.all_buildable(hovered_tiles)
-	cursor.can_place_tower(can_build)
-	
-	#snap the cursor to the grid
+	# snap the cursor to the grid
 	var snapped_position = tilemap_to_global(tile_map_pos) - tile_offset 
 	cursor.position = snapped_position
+	
+	# get the 4 tiles overlapped by the sprite cursor	
+	var hovered_tiles = _get_hovered_tiles_for(tile_map_pos)
+	
+	# block placement if there is already a tower/wall under the cursor
+	if not map.all_buildable(hovered_tiles):
+		cursor.can_place_tower(false)
+		return
+	
+	# block placement if doing so would cause there to be no paths from spawn to exit
+	if map.would_block_path(hovered_tiles):
+		cursor.can_place_tower(false)
+		return
+		
+	# block placement if there is a creep walking under the cursor
+	# TODO
+	
+	cursor.can_place_tower(true)
+	
+
 
 # hovered tiles are the 2x2 tile area beneath the selection cursor sprite	
 func _get_hovered_tiles_for(map_pos: Vector2i) -> Array[Vector2i]:

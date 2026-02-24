@@ -9,9 +9,13 @@ var _walkable: Dictionary[Vector2i, bool] = {} # tiles a creep can walk on
 var _buildable: Dictionary[Vector2i, bool] = {} # tiles a tower can be placed on
 var _type: Dictionary[Vector2i, _TT]
 
+var spawns: Array[Vector2i]
+var exits: Array[Vector2i]
+
 func _init(map_data: MapData) -> void:
 	_map_data = map_data
-	
+	spawns = map_data.creep_spawn
+	exits = map_data.creep_exit
 	var map = map_data.map_array
 	for rowcount in range(map.size()):
 		var row = map[rowcount]
@@ -51,6 +55,9 @@ func buildable(position: Vector2i) -> bool:
 	
 func walkable(position: Vector2i) -> bool:
 	return _walkable[position]
+	
+func would_block_path(positions_to_block: Array[Vector2i]) -> bool:
+	return _path.would_block(positions_to_block)
 
 var _last_spawn_point_idx = 0
 func spawn_point_get_next() -> Vector2i:
