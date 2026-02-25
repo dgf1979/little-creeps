@@ -10,8 +10,6 @@ var _can_place_tower: bool = false
 
 func _ready() -> void:
 	Event.tower_select.connect(_on_tower_select)
-	Event.tower_place.connect(_on_tower_place)
-	Event.tower_select_cancel.connect(_on_tower_select_cancel)
 	hide()
 	
 func can_place_tower(tf: bool) -> void:
@@ -26,14 +24,6 @@ func _on_tower_select(tower_data: TowerData) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	$Icon.texture = tower_data.load_thumbnail_texture()
 	show()
-	
-func _on_tower_select_cancel() -> void:
-	_selected_tower_data = null
-	hide()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
-func _on_tower_place(_tower_data) -> void:
-	_on_tower_select_cancel()
 
 func _process(_delta: float) -> void:
 	if visible:
@@ -43,4 +33,13 @@ func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("left_mouse_click")):
 		if _can_place_tower:
 			Event.tower_place.emit(_selected_tower_data)
-			_on_tower_select_cancel()
+			_deselect_tower()
+	if (event.is_action_pressed("right_mouse_click")):
+		if _selected_tower_data != null:
+			_deselect_tower()
+		
+func _deselect_tower() -> void:
+	_selected_tower_data = null
+	hide()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	

@@ -84,10 +84,6 @@ func cursor_snap_to_map(cursor: TowerPacementCursor) -> void:
 func _get_hovered_tiles_for(map_pos: Vector2i) -> Array[Vector2i]:
 	var tiles : Array[Vector2i] = [map_pos, Vector2i(map_pos.x + 1, map_pos.y), Vector2i(map_pos.x, map_pos.y + 1), Vector2i(map_pos.x + 1, map_pos.y + 1)]
 	return tiles
-	
-func _input(event: InputEvent) -> void:
-	if (event.is_action_pressed("right_mouse_click")):
-		Event.tower_select_cancel.emit()
 		
 func _on_creep_spawn(creep: Creep) -> void:
 	var path = get_global_path_from_spawn()
