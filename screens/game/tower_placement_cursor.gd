@@ -21,6 +21,7 @@ func can_place_tower(tf: bool) -> void:
 
 func _on_tower_select(tower_data: TowerData) -> void:
 	_selected_tower_data = tower_data
+	print(_selected_tower_data.display_name.to_upper())
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	$Icon.texture = tower_data.load_thumbnail_texture()
 	show()
@@ -30,12 +31,17 @@ func _process(_delta: float) -> void:
 		%ActiveMap.cursor_snap_to_map(self)
 		
 func _input(event: InputEvent) -> void:
+	# only process input here when a tower has been selected
+	if _selected_tower_data == null: 
+		return
+	
+	if (event.is_action_pressed("right_mouse_click")):
+		_deselect_tower()
+		return
+	
 	if (event.is_action_pressed("left_mouse_click")):
 		if _can_place_tower:
 			Event.tower_place.emit(_selected_tower_data)
-			_deselect_tower()
-	if (event.is_action_pressed("right_mouse_click")):
-		if _selected_tower_data != null:
 			_deselect_tower()
 		
 func _deselect_tower() -> void:
