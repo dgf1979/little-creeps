@@ -66,7 +66,6 @@ func set_blocked(positions_to_block: Array[Vector2i]) -> void:
 	for position in positions_to_block:
 		_update_node(position, _TT.TOWER)
 	_path.sync(self)
-	Event.map_update.emit(self)
 
 var _last_spawn_point_idx = 0
 func spawn_point_get_next() -> Vector2i:

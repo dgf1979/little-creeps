@@ -6,6 +6,7 @@ var hit_points: int = 20
 var speed: int = 64
 var _path: Array[Vector2] = []
 var _started: bool = false
+var _idling: bool = false
 
 #PUBLIC
 func configure(creep_data: CreepData) -> void:
@@ -45,9 +46,14 @@ func _exit_reached() -> void:
 func _destroyed() -> void:
 	Event.creep_eliminated.emit(self)
 	
+func set_idle(idle: bool) -> void:
+	_idling = idle
+	
 func _process(_delta: float) -> void:
 	# if not started, don't move
 	if not _started: return
+	# if idling, don't move
+	if _idling: return
 
 	var direction: Vector2 = global_position.direction_to(_path[0])
 	look_at(_path[0])
