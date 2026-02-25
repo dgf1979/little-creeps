@@ -5,6 +5,7 @@ class_name ActiveMap
 
 func _ready() -> void:
 	Event.creep_spawn.connect(_on_creep_spawn)
+	Event.tower_place.connect(_on_tower_place)
 	clear() 
 	for coordinate in map.coordinates():
 		set_cell(coordinate, 0, Vector2i(0,0))
@@ -37,14 +38,14 @@ func _hovered_tile_id() -> int:
 
 # by default tilemap position is the center of the tile, but in this case we want the upper-left position,
 # and therefor need to subtract half the tile width & height from each position
-const tile_offset = Vector2(Constants.MAP_TILE_SIZE_PX * 0.5, Constants.MAP_TILE_SIZE_PX * 0.5)
-const actor_offset = Vector2(Constants.MAP_ACTOR_SIZE_PX * 0.5, Constants.MAP_ACTOR_SIZE_PX * 0.5)
+const TILE_OFFSET = Vector2(Constants.MAP_TILE_SIZE_PX * 0.5, Constants.MAP_TILE_SIZE_PX * 0.5)
+const ACTOR_OFFSET = Vector2(Constants.MAP_ACTOR_SIZE_PX * 0.5, Constants.MAP_ACTOR_SIZE_PX * 0.5)
 const NO_TILE = -1 #disambiguate the magic number for no tile
 func cursor_snap_to_map(cursor: TowerPacementCursor) -> void:
 	# outside the tilemap, do not snap
 	if _hovered_tile_id() == NO_TILE:
 		# adjust the actual cursor to half the size the cursor sprite to roughly center
-		cursor.position = get_global_mouse_position() - actor_offset
+		cursor.position = get_global_mouse_position() - ACTOR_OFFSET
 		cursor.can_place_tower(false)
 		return
 	
@@ -57,7 +58,7 @@ func cursor_snap_to_map(cursor: TowerPacementCursor) -> void:
 		tile_map_pos -= Vector2i(1, 1)
 		
 	# snap the cursor to the grid
-	var snapped_position = tilemap_to_global(tile_map_pos) - tile_offset 
+	var snapped_position = tilemap_to_global(tile_map_pos) - TILE_OFFSET
 	cursor.position = snapped_position
 	
 	# get the 4 tiles overlapped by the sprite cursor	
@@ -78,8 +79,6 @@ func cursor_snap_to_map(cursor: TowerPacementCursor) -> void:
 	
 	cursor.can_place_tower(true)
 	
-
-
 # hovered tiles are the 2x2 tile area beneath the selection cursor sprite	
 func _get_hovered_tiles_for(map_pos: Vector2i) -> Array[Vector2i]:
 	var tiles : Array[Vector2i] = [map_pos, Vector2i(map_pos.x + 1, map_pos.y), Vector2i(map_pos.x, map_pos.y + 1), Vector2i(map_pos.x + 1, map_pos.y + 1)]
@@ -90,5 +89,11 @@ func _on_creep_spawn(creep: Creep) -> void:
 	creep.set_path(path)
 	creep.start()
 	
-		
+func _on_tower_place(tower_data: TowerData):
+	var tower: Tower = (%TowerFactory as TowerFactory).build_tower(tower_data)
+	var map_position = local_to_map(to_local(get_global_mouse_position()))
+	var hovered_tiles = _get_hovered_tiles_for(map_position)
+	map.set_blocked(hovered_tiles)
+	tower.position = map_position * Constants.MAP_TILE_SIZE_PX
+	add_child(tower)
 	

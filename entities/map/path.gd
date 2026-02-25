@@ -27,6 +27,7 @@ func sync(map: Map) -> void:
 		_duplicate.set_point_solid(coord, solid)
 	_start = map.spawns[0]
 	_end = map.exits[0]
+	Event.map_update.emit(self)
 	
 func find_path(from: Vector2i, to: Vector2i) -> Array[Vector2i]:
 	var path = _grid.get_id_path(from, to)

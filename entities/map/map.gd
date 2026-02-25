@@ -58,6 +58,14 @@ func walkable(position: Vector2i) -> bool:
 	
 func would_block_path(positions_to_block: Array[Vector2i]) -> bool:
 	return _path.would_block(positions_to_block)
+	
+func set_blocked(positions_to_block: Array[Vector2i]) -> void:
+	for position in positions_to_block:
+		_walkable[position] = false
+		_buildable[position] = false
+		_type[position] = _TT.TOWER
+		Event.map_update.emit(self)
+	_path.sync(self)
 
 var _last_spawn_point_idx = 0
 func spawn_point_get_next() -> Vector2i:

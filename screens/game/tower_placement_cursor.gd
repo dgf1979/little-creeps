@@ -22,7 +22,7 @@ func can_place_tower(tf: bool) -> void:
 func _on_tower_select(tower_data: TowerData) -> void:
 	_selected_tower_data = tower_data
 	print(_selected_tower_data.display_name.to_upper())
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	$Icon.texture = tower_data.load_thumbnail_texture()
 	show()
 
@@ -41,7 +41,7 @@ func _input(event: InputEvent) -> void:
 	
 	if (event.is_action_pressed("left_mouse_click")):
 		if _can_place_tower:
-			Event.tower_place.emit(_selected_tower_data, (event as InputEventMouseButton).global_position)
+			Event.tower_place.emit(_selected_tower_data)
 			_deselect_tower()
 		
 func _deselect_tower() -> void:
