@@ -22,24 +22,27 @@ func _init(map_data: MapData) -> void:
 		for colcount in range(row.size()):
 			var map_coord = Vector2i(colcount, rowcount)
 			var tile_type: _TT = row[colcount]
-			_type.set(map_coord, tile_type)
-			match tile_type:
-				_TT.INVALID:
-					push_error("invalid tile type at " + str(map_coord))
-				_TT.SPAWN, _TT.EXIT:
-					# creeps must be able to walk on and through spawn point/exit, but can't place a tower on top as that would block.
-					_walkable.set(map_coord, true)
-					_buildable.set(map_coord, false)
-				_TT.PATH:
-					_walkable.set(map_coord, true)
-					_buildable.set(map_coord, true)
-				_TT.WALL, _TT.TOWER:
-					_walkable.set(map_coord, false)
-					_buildable.set(map_coord, false)
-				_:
-					push_error("unhandled tile type at " + str(map_coord))
+			_update_node(map_coord, tile_type)
 					
 	_path.sync(self)
+	
+func _update_node(map_coord: Vector2i, tile_type: Enums.TILE_TYPE) -> void:
+	_type.set(map_coord, tile_type)
+	match tile_type:
+		_TT.INVALID:
+			push_error("invalid tile type at " + str(map_coord))
+		_TT.SPAWN, _TT.EXIT:
+			# creeps must be able to walk on and through spawn point/exit, but can't place a tower on top as that would block.
+			_walkable.set(map_coord, true)
+			_buildable.set(map_coord, false)
+		_TT.PATH:
+			_walkable.set(map_coord, true)
+			_buildable.set(map_coord, true)
+		_TT.WALL, _TT.TOWER:
+			_walkable.set(map_coord, false)
+			_buildable.set(map_coord, false)
+		_:
+			push_error("unhandled tile type at " + str(map_coord))
 				
 func coordinates() -> Array[Vector2i]:
 	return _type.keys()
@@ -61,11 +64,9 @@ func would_block_path(positions_to_block: Array[Vector2i]) -> bool:
 	
 func set_blocked(positions_to_block: Array[Vector2i]) -> void:
 	for position in positions_to_block:
-		_walkable[position] = false
-		_buildable[position] = false
-		_type[position] = _TT.TOWER
-		Event.map_update.emit(self)
+		_update_node(position, _TT.TOWER)
 	_path.sync(self)
+	Event.map_update.emit(self)
 
 var _last_spawn_point_idx = 0
 func spawn_point_get_next() -> Vector2i:
