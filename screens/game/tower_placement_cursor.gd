@@ -41,7 +41,7 @@ func _input(event: InputEvent) -> void:
 	
 	if (event.is_action_pressed("left_mouse_click")):
 		if _can_place_tower:
-			Event.tower_place.emit(_selected_tower_data)
+			Event.tower_place.emit(_selected_tower_data, (event as InputEventMouseButton).global_position)
 			_deselect_tower()
 		
 func _deselect_tower() -> void:

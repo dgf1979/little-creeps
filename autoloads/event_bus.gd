@@ -7,7 +7,7 @@ extends Node
 @warning_ignore("unused_signal")
 signal tower_select(tower_data: TowerData)
 @warning_ignore("unused_signal")
-signal tower_place(tower_data: TowerData)
+signal tower_place(tower_data: TowerData, global_mouse_position: Vector2)
 
 #MAP/PATH
 @warning_ignore("unused_signal")
@@ -35,7 +35,7 @@ signal wave_countdown_tick(seconds_left: int)
 # debugging
 func _ready() -> void:
 	tower_select.connect(func(_x): print_debug("tower_select"))
-	tower_place.connect(func(_x): print_debug("tower_place"))
+	tower_place.connect(func(_x, pos): print_debug("tower_place at: " + str(pos)))
 	
 	map_update.connect(func(_x): print_debug("map_update"))
 	
