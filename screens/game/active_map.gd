@@ -94,6 +94,6 @@ func _on_tower_place(tower_data: TowerData):
 	var map_position = local_to_map(to_local(get_global_mouse_position()))
 	var hovered_tiles = _get_hovered_tiles_for(map_position)
 	map.set_blocked(hovered_tiles)
-	tower.position = map_position * Constants.MAP_TILE_SIZE_PX
+	tower.position = (map_position + Vector2i.ONE) * Constants.MAP_TILE_SIZE_PX
 	add_child(tower)
 	

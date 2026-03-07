@@ -1,5 +1,5 @@
-extends CharacterBody2D
 class_name Creep
+extends Node2D
 
 var token_value: int = 10
 var hit_points: int = 20
@@ -49,16 +49,19 @@ func _destroyed() -> void:
 func set_idle(idle: bool) -> void:
 	_idling = idle
 	
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	# if not started, don't move
 	if not _started: return
 	# if idling, don't move
 	if _idling: return
-
+	# if no path is set, don't move
+	if _path.is_empty(): return
+	
 	var direction: Vector2 = global_position.direction_to(_path[0])
 	look_at(_path[0])
-	velocity = direction * speed #pixels per second
-	move_and_slide()
+	global_position += direction * speed * delta
+	#velocity = direction * speed #pixels per second
+	#move_and_slide()
 	
 	# remove path node if we have reached it
 	var distance = global_position.distance_to(_path[0])

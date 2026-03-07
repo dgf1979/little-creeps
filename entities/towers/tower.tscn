@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://d33mjde32jswu" path="res://entities/towers/turret.gd" id="2_eauc5"]
 [ext_resource type="PackedScene" uid="uid://7tbp4i36fdxp" path="res://entities/range/range.tscn" id="4_igp14"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xb23s"]
+resource_local_to_scene = true
+
 [node name="Tower" type="Sprite2D" unique_id=1578966450]
-centered = false
 script = ExtResource("1_i6n5m")
 
 [node name="ClickZone" type="TextureButton" parent="." unique_id=118939495]
@@ -17,10 +19,16 @@ grow_vertical = 2
 toggle_mode = true
 
 [node name="Turret" type="Sprite2D" parent="." unique_id=617476370]
-centered = false
 script = ExtResource("2_eauc5")
 
 [node name="Range" parent="." unique_id=18209550 instance=ExtResource("4_igp14")]
 visible = false
 
+[node name="CreepDetection" type="Area2D" parent="." unique_id=1494794194]
+
+[node name="DetectionRadius" type="CollisionShape2D" parent="CreepDetection" unique_id=1347202059]
+shape = SubResource("CircleShape2D_xb23s")
+
 [connection signal="toggled" from="ClickZone" to="." method="_on_click_zone_toggled"]
+[connection signal="area_entered" from="CreepDetection" to="." method="_on_creep_detection_area_entered"]
+[connection signal="area_exited" from="CreepDetection" to="." method="_on_creep_detection_area_exited"]

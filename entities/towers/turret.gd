@@ -4,4 +4,4 @@ extends Sprite2D
 
 func _process(_delta: float) -> void:
 	if tower.current_target != null:
-		look_at(tower.current_target)
+		look_at((tower.current_target as Creep).global_position)

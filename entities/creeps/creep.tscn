@@ -27,9 +27,9 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5xnwf"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1xca"]
 
-[node name="Creep" type="CharacterBody2D" unique_id=1142720394]
+[node name="Creep" type="Node2D" unique_id=297662374 groups=["creeps"]]
 script = ExtResource("1_iegoc")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=831783711]
@@ -39,6 +39,7 @@ animation = &"walk"
 frame_progress = 0.23663954
 script = ExtResource("3_itif7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=507176051]
-shape = SubResource("CircleShape2D_5xnwf")
-disabled = true
+[node name="Area2D" type="Area2D" parent="." unique_id=536678378]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1088976460]
+shape = SubResource("CircleShape2D_b1xca")
