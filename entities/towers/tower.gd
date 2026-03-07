@@ -1,6 +1,11 @@
-extends TextureButton
+extends Sprite2D
 class_name Tower
 
+var current_target: Creep = null
+
 func configure(tower_data: TowerData):
-	#TODO load correct textures
-	texture_normal = tower_data.load_thumbnail_texture()
+	texture = tower_data.load_sprite_base_texture()
+	if tower_data.has_turret:
+		$Turret.texture = tower_data.load_sprite_turret_texture()
+	else: # remove turret node if unused
+		$Turret.queue_free()

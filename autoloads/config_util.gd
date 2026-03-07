@@ -60,10 +60,28 @@ func load_tower_data_for_path(map_dir_name: String) -> Dictionary[String, TowerD
 		var cfg = FSUtil.get_file_as_config(tower_config_file)
 		var tower = TowerData.new()
 		tower.display_name = cfg.get_value("Tower", "display_name")
-		tower.sprite_file_name = cfg.get_value("Tower", "sprite_file_name")
+		tower.sprite_base_file_name = cfg.get_value("Tower", "sprite_base_file_name")
 		tower.thumbnail_file_name = cfg.get_value("Tower", "thumbnail_file_name")
+		tower.type = cfg.get_value("Tower", "type")
+		tower.range = cfg.get_value("Tower", "range")
+		# optional turret section
+		if cfg.has_section("Turret"):
+			tower.has_turret = true
+			tower.sprite_turret_file_name = cfg.get_value("Turret", "sprite_turret_file_name")
 		tower_data.set(tower.display_name, tower)
 	return tower_data
+	
+func _get_tower_enum_type(type_str: String) -> TowerData.Type:
+	match type_str.to_upper():
+		"WALL": return TowerData.Type.WALL
+		"BULLET": return TowerData.Type.BULLET
+		"MISSILE": return TowerData.Type.MISSILE
+		"BEAM": return TowerData.Type.BEAM
+		"PULSE": return TowerData.Type.PULSE
+		_: 
+			push_error("Unknown tower type '" + type_str + "'")
+			return TowerData.Type.INVALID
+		
 
 func load_wave_data_for_path(map_dir_name: String) -> Array[WaveData]:
 	var wave_data_config_file_path = Constants.MAPS_PATH.path_join(map_dir_name).path_join(Constants.MAP_WAVE_CONFIG_FILE_NAME)
