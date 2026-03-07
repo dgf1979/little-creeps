@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://b7rdthyl1qavh" path="res://screens/game/transparent_tile.png" id="13_y2n64"]
 [ext_resource type="Script" uid="uid://cfvecuginhhla" path="res://screens/game/ui/debug/tabs/visual_toggles/toggle_walkable.gd" id="14_a032w"]
 [ext_resource type="Script" uid="uid://85drkfo45wpt" path="res://screens/game/active_map.gd" id="14_n6j5y"]
+[ext_resource type="PackedScene" uid="uid://7tbp4i36fdxp" path="res://entities/range/range.tscn" id="24_ikmaa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p21lm"]
 
@@ -390,6 +391,8 @@ show_behind_parent = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Range" parent="UI/TowerPlacementCursor" unique_id=18209550 instance=ExtResource("24_ikmaa")]
 
 [connection signal="pressed" from="UI/TopRight/QuitBtn" to="UI/TopRight/QuitBtn" method="_on_pressed"]
 [connection signal="timeout" from="UI/PlayArea/WaveManager/WaveTimer" to="UI/PlayArea/WaveManager" method="_on_wave_timer_timeout"]

@@ -2,7 +2,7 @@ extends Node2D
 
 const color: Color = Color(Color.ORANGE, 0.3)
 const line_width: float = 2.0
-@export var radius: float = 50.0
+@export var radius: float = 32.0
 @export var offset: Vector2 = Vector2(Constants.MAP_ACTOR_SIZE_PX * 0.5, Constants.MAP_ACTOR_SIZE_PX * 0.5)
 
 func _draw():
