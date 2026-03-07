@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://djkkkthpbcvp"]
 
 [ext_resource type="Script" uid="uid://brxltm7pbynu" path="res://entities/towers/tower.gd" id="1_i6n5m"]
+[ext_resource type="Script" uid="uid://28fm3ejdjpb1" path="res://entities/towers/click_zone.gd" id="2_4p4bm"]
 [ext_resource type="Script" uid="uid://d33mjde32jswu" path="res://entities/towers/turret.gd" id="2_eauc5"]
-[ext_resource type="Script" uid="uid://hxw60vkrdu3t" path="res://entities/towers/range.gd" id="3_xb23s"]
+[ext_resource type="PackedScene" uid="uid://7tbp4i36fdxp" path="res://entities/range/range.tscn" id="4_igp14"]
 
 [node name="Tower" type="Sprite2D" unique_id=1578966450]
 centered = false
@@ -14,13 +15,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_4p4bm")
 
 [node name="Turret" type="Sprite2D" parent="." unique_id=617476370]
 centered = false
 script = ExtResource("2_eauc5")
 
-[node name="Range" type="Node2D" parent="." unique_id=1787117972]
-script = ExtResource("3_xb23s")
+[node name="Range" parent="." unique_id=18209550 instance=ExtResource("4_igp14")]
 
-[connection signal="mouse_entered" from="ClickZone" to="Range" method="_on_click_zone_mouse_entered"]
-[connection signal="mouse_exited" from="ClickZone" to="Range" method="_on_click_zone_mouse_exited"]
+[connection signal="focus_entered" from="ClickZone" to="ClickZone" method="_on_focus_entered"]
+[connection signal="focus_exited" from="ClickZone" to="ClickZone" method="_on_focus_exited"]

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://7tbp4i36fdxp"]
+
+[ext_resource type="Script" uid="uid://x8my8n21c3ai" path="res://entities/range/range.gd" id="1_r4gqe"]
+
+[node name="Range" type="Node2D" unique_id=18209550]
+script = ExtResource("1_r4gqe")
