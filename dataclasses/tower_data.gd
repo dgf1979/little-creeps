@@ -8,7 +8,7 @@ var sprite_turret_file_name: String = "" # OPTIONAL: file name of rotating turre
 var thumbnail_file_name: String = "" # file name of thumbnail 64x64px
 var has_turret: bool = false
 var type: Type = Type.INVALID # projectile type
-var range: int = 0 # projectile range
+var target_range: int = 0 # projectile range
 
 func load_sprite_base_texture() -> Texture2D:
 	var resource_path = Constants.MAPS_PATH.path_join(Selection.selected_map_dir).path_join("towers").path_join(sprite_base_file_name)

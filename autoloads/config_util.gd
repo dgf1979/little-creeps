@@ -63,7 +63,7 @@ func load_tower_data_for_path(map_dir_name: String) -> Dictionary[String, TowerD
 		tower.sprite_base_file_name = cfg.get_value("Tower", "sprite_base_file_name")
 		tower.thumbnail_file_name = cfg.get_value("Tower", "thumbnail_file_name")
 		tower.type = cfg.get_value("Tower", "type")
-		tower.range = cfg.get_value("Tower", "range")
+		tower.target_range = cfg.get_value("Tower", "range")
 		# optional turret section
 		if cfg.has_section("Turret"):
 			tower.has_turret = true
