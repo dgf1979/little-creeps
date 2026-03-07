@@ -9,3 +9,4 @@ func configure(tower_data: TowerData):
 		$Turret.texture = tower_data.load_sprite_turret_texture()
 	else: # remove turret node if unused
 		$Turret.queue_free()
+	$Range.radius = tower_data.target_range

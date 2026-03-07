@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://brxltm7pbynu" path="res://entities/towers/tower.gd" id="1_i6n5m"]
 [ext_resource type="Script" uid="uid://d33mjde32jswu" path="res://entities/towers/turret.gd" id="2_eauc5"]
+[ext_resource type="Script" uid="uid://hxw60vkrdu3t" path="res://entities/towers/range.gd" id="3_xb23s"]
 
 [node name="Tower" type="Sprite2D" unique_id=1578966450]
 centered = false
@@ -17,3 +18,9 @@ grow_vertical = 2
 [node name="Turret" type="Sprite2D" parent="." unique_id=617476370]
 centered = false
 script = ExtResource("2_eauc5")
+
+[node name="Range" type="Node2D" parent="." unique_id=1787117972]
+script = ExtResource("3_xb23s")
+
+[connection signal="mouse_entered" from="ClickZone" to="Range" method="_on_click_zone_mouse_entered"]
+[connection signal="mouse_exited" from="ClickZone" to="Range" method="_on_click_zone_mouse_exited"]
