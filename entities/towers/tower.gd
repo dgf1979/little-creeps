@@ -10,14 +10,10 @@ func _ready() -> void:
 
 func configure(tower_data: TowerData):
 	texture = tower_data.load_sprite_base_texture()
-	if tower_data.has_turret:
-		$Turret.texture = tower_data.load_sprite_turret_texture()
-	else: # remove turret node if unused
-		$Turret.queue_free()
-	$Range.radius = tower_data.target_range
-	var detection_shape: CollisionShape2D = $CreepDetection/DetectionRadius
-	var circle: CircleShape2D = detection_shape.shape
-	circle.radius = tower_data.target_range
+	$Turret.configure(tower_data)
+	$Range.configure(tower_data)
+	$CreepDetection.configure(tower_data)
+
 
 func _on_click_zone_toggled(toggled_on: bool) -> void:
 	if toggled_on:

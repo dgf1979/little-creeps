@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://brxltm7pbynu" path="res://entities/towers/tower.gd" id="1_i6n5m"]
 [ext_resource type="Script" uid="uid://d33mjde32jswu" path="res://entities/towers/turret.gd" id="2_eauc5"]
+[ext_resource type="Script" uid="uid://cocroaguyutrc" path="res://entities/towers/creep_detection.gd" id="4_3qjjp"]
+[ext_resource type="Script" uid="uid://csn1l3t2gmg1q" path="res://entities/towers/firing_control.gd" id="4_4p4bm"]
 [ext_resource type="PackedScene" uid="uid://7tbp4i36fdxp" path="res://entities/range/range.tscn" id="4_igp14"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xb23s"]
@@ -25,9 +27,15 @@ script = ExtResource("2_eauc5")
 visible = false
 
 [node name="CreepDetection" type="Area2D" parent="." unique_id=1494794194]
+script = ExtResource("4_3qjjp")
 
 [node name="DetectionRadius" type="CollisionShape2D" parent="CreepDetection" unique_id=1347202059]
 shape = SubResource("CircleShape2D_xb23s")
+
+[node name="FiringControl" type="Node2D" parent="." unique_id=583535470]
+script = ExtResource("4_4p4bm")
+
+[node name="Timer" type="Timer" parent="FiringControl" unique_id=2004971837]
 
 [connection signal="toggled" from="ClickZone" to="." method="_on_click_zone_toggled"]
 [connection signal="area_entered" from="CreepDetection" to="." method="_on_creep_detection_area_entered"]
