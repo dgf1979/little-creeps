@@ -62,12 +62,19 @@ func load_tower_data_for_path(map_dir_name: String) -> Dictionary[String, TowerD
 		tower.display_name = cfg.get_value("Tower", "display_name")
 		tower.sprite_base_file_name = cfg.get_value("Tower", "sprite_base_file_name")
 		tower.thumbnail_file_name = cfg.get_value("Tower", "thumbnail_file_name")
-		tower.type = cfg.get_value("Tower", "type")
+		tower.type = _get_tower_enum_type(cfg.get_value("Tower", "type"))
 		tower.target_range = cfg.get_value("Tower", "range")
 		# optional turret section
 		if cfg.has_section("Turret"):
 			tower.has_turret = true
 			tower.sprite_turret_file_name = cfg.get_value("Turret", "sprite_turret_file_name")
+		# projectile type section - not required if type is 'WALL'
+		if tower.type != TowerData.Type.WALL:
+			tower.projectile_sprite_file_name = cfg.get_value("Projectile", "texture_file_name")
+			tower.projectile_firing_sound_file_name = cfg.get_value("Projectile", "fire_sound_file_name")
+			tower.rate_of_fire = cfg.get_value("Projectile", "rate_of_fire")
+			tower.damage_per_hit = cfg.get_value("Projectile", "damage_per_hit")
+			
 		tower_data.set(tower.display_name, tower)
 	return tower_data
 	
@@ -80,8 +87,7 @@ func _get_tower_enum_type(type_str: String) -> TowerData.Type:
 		"PULSE": return TowerData.Type.PULSE
 		_: 
 			push_error("Unknown tower type '" + type_str + "'")
-			return TowerData.Type.INVALID
-		
+			return TowerData.Type.INVALID		
 
 func load_wave_data_for_path(map_dir_name: String) -> Array[WaveData]:
 	var wave_data_config_file_path = Constants.MAPS_PATH.path_join(map_dir_name).path_join(Constants.MAP_WAVE_CONFIG_FILE_NAME)
@@ -97,4 +103,3 @@ func load_wave_data_for_path(map_dir_name: String) -> Array[WaveData]:
 		waves.append(wave_data)
 
 	return waves
-	

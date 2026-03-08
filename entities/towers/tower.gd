@@ -4,12 +4,14 @@ class_name Tower
 @onready var creep_detection: Area2D = $CreepDetection
 
 var current_target: Creep = null
+var is_wall: bool = false
 
 func _ready() -> void:
 	Event.tower_instance_select.connect(_on_tower_selected)
 
 func configure(tower_data: TowerData):
 	texture = tower_data.load_sprite_base_texture()
+	is_wall = tower_data.type == TowerData.Type.WALL
 	$Turret.configure(tower_data)
 	$Range.configure(tower_data)
 	$CreepDetection.configure(tower_data)
@@ -30,6 +32,8 @@ func _on_tower_selected(tower: Tower) -> void:
 	
 		
 func _process(_delta: float) -> void:
+	# walls don't need to do anything
+	if is_wall: return
 	# don't need to look for creeps in range if we already have a current target
 	if current_target != null: return
 	
