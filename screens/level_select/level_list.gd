@@ -21,5 +21,5 @@ func _ready() -> void:
 		var item_node = MENU_ITEM.instantiate()
 		item_node.map_name = map.map_name
 		item_node.map_dir_name = map.map_dir_name
-		item_node.preview_image = map.load_preview_image()
+		item_node.preview_image = map.preview_image
 		add_child(item_node)

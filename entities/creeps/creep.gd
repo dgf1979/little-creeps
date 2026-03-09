@@ -10,7 +10,7 @@ var _idling: bool = false
 
 #PUBLIC
 func configure(creep_data: CreepData) -> void:
-	%Sprite.configure_walk_animation(creep_data.load_walk_anim_texture())
+	%Sprite.configure_walk_animation(creep_data.walk_anim_texture)
 	# TODO add token vale to creep config and class
 	# TODO add hit points to creep config and class
 	# TODO add speed (pixels per second) 

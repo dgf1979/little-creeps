@@ -23,8 +23,9 @@ func _on_tower_select(tower_data: TowerData) -> void:
 	_selected_tower_data = tower_data
 	print(_selected_tower_data.display_name.to_upper())
 	#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-	$Icon.texture = tower_data.load_thumbnail_texture()
+	$Icon.texture = tower_data.thumbnail_texture
 	$Range.radius = tower_data.target_range
+	$Range.offset = Vector2(Constants.MAP_ACTOR_SIZE_PX * 0.5, Constants.MAP_ACTOR_SIZE_PX * 0.5)
 	show()
 
 func _process(_delta: float) -> void:

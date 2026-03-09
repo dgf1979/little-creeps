@@ -4,7 +4,7 @@ var _tower_data: TowerData
 
 func setup(tower_data: TowerData) -> void:
 	_tower_data = tower_data
-	icon = tower_data.load_thumbnail_texture()
+	icon = tower_data.thumbnail_texture
 	disabled = true
 	Event.game_start.connect(_on_game_start)
 

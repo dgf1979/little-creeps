@@ -4,7 +4,7 @@ extends Sprite2D
 
 func configure(tower_data: TowerData):
 	if tower_data.has_turret:
-		texture = tower_data.load_sprite_turret_texture()
+		texture = tower_data.sprite_turret_texture
 	else: # remove this node if unused
 		queue_free()
 

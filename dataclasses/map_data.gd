@@ -11,14 +11,16 @@ var creep_spawn: Array[Vector2i] = []
 var creep_exit: Array[Vector2i] = []
 var wall_mode: WallMode = WallMode.SIMPLE
 var map_array: Array[Array] = [[]]
+var preview_image: Texture2D
+var map_image: Texture2D
 
-func load_preview_image() -> Texture2D:
-	var resource_path = map_dir_path.path_join(Constants.MAP_PREVIEW_FILE_NAME)
-	return ResUtil.load_texture_resource(resource_path)
-	
-func load_map_image() -> Texture2D:
-	var resource_path = map_dir_path.path_join(Constants.MAP_IMAGE_FILE_NAME)
-	return ResUtil.load_texture_resource(resource_path)
+#func load_preview_image() -> Texture2D:
+	#var resource_path = map_dir_path.path_join(Constants.MAP_PREVIEW_FILE_NAME)
+	#return ResUtil.load_texture_resource(resource_path)
+	#
+#func load_map_image() -> Texture2D:
+	#var resource_path = map_dir_path.path_join(Constants.MAP_IMAGE_FILE_NAME)
+	#return ResUtil.load_texture_resource(resource_path)
 	
 #const _block_char = "\u2588" # character code for solid block
 #func map_to_debug_string() -> String:

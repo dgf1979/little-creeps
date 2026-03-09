@@ -4,11 +4,14 @@ func load_map_data_for_path(map_dir_name: String) -> MapData:
 	var map_data = MapData.new()
 	map_data.map_dir_name = map_dir_name
 	
-	var fp = Constants.MAPS_PATH.path_join(map_dir_name).path_join(Constants.MAP_CONFIG_FILE_NAME)
+	var map_path = Constants.MAPS_PATH.path_join(map_dir_name)
+	var fp = map_path.path_join(Constants.MAP_CONFIG_FILE_NAME)
 	var cfg = FSUtil.get_file_as_config(fp)
 	
 	map_data.map_name = cfg.get_value("MapData","map_name",null)
 	map_data.wall_mode = cfg.get_value("MapData","wall_mode",null)
+	map_data.preview_image = load_texture(Constants.MAP_PREVIEW_FILE_NAME, map_path)
+	map_data.map_image = load_texture(Constants.MAP_IMAGE_FILE_NAME, map_path)
 	
 	var bitmap = ResUtil.load_texture_resource_as_image(map_data.map_dir_path.path_join(Constants.MAP_BITMAP_FILE_NAME))
 	for row in range(bitmap.get_height()):
@@ -48,7 +51,7 @@ func load_creep_data_for_path(map_dir_name: String) -> Dictionary[String, CreepD
 		var cfg = FSUtil.get_file_as_config(creep_config_file)
 		var creep = CreepData.new()
 		creep.name = cfg.get_value("Creep","name")
-		creep.walk_anim_file_name = cfg.get_value("Creep","walk_anim_file_name")
+		creep.walk_anim_texture = load_texture(cfg.get_value("Creep","walk_anim_file_name"), creep_dir_path)
 		creep_data.set(creep.name, creep)
 	return creep_data
 	
@@ -60,18 +63,17 @@ func load_tower_data_for_path(map_dir_name: String) -> Dictionary[String, TowerD
 		var cfg = FSUtil.get_file_as_config(tower_config_file)
 		var tower = TowerData.new()
 		tower.display_name = cfg.get_value("Tower", "display_name")
-		tower.sprite_base_file_name = cfg.get_value("Tower", "sprite_base_file_name")
-		tower.thumbnail_file_name = cfg.get_value("Tower", "thumbnail_file_name")
+		tower.sprite_base_texture = load_texture(cfg.get_value("Tower", "sprite_base_file_name"), tower_dir_path)
+		tower.thumbnail_texture = load_texture(cfg.get_value("Tower", "thumbnail_file_name"), tower_dir_path)
 		tower.type = _get_tower_enum_type(cfg.get_value("Tower", "type"))
 		tower.target_range = cfg.get_value("Tower", "range")
 		# optional turret section
 		if cfg.has_section("Turret"):
 			tower.has_turret = true
-			tower.sprite_turret_file_name = cfg.get_value("Turret", "sprite_turret_file_name")
+			tower.sprite_turret_texture = load_texture(cfg.get_value("Turret", "sprite_turret_file_name"), tower_dir_path)
 		# projectile type section - not required if type is 'WALL'
 		if tower.type != TowerData.Type.WALL:
-			tower.projectile_sprite_file_name = cfg.get_value("Projectile", "texture_file_name")
-			tower.projectile_firing_sound_file_name = cfg.get_value("Projectile", "fire_sound_file_name")
+			tower.projectile_sprite_texture = load_texture(cfg.get_value("Projectile", "texture_file_name"), tower_dir_path)
 			tower.rate_of_fire = cfg.get_value("Projectile", "rate_of_fire")
 			tower.damage_per_hit = cfg.get_value("Projectile", "damage_per_hit")
 			
@@ -103,3 +105,7 @@ func load_wave_data_for_path(map_dir_name: String) -> Array[WaveData]:
 		waves.append(wave_data)
 
 	return waves
+	
+func load_texture(file_name: String, dir: String) -> Texture2D:
+	var resource_path = dir.path_join(file_name)
+	return ResUtil.load_texture_resource(resource_path)

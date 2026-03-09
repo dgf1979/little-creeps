@@ -10,7 +10,7 @@ func _ready() -> void:
 	Event.tower_instance_select.connect(_on_tower_selected)
 
 func configure(tower_data: TowerData):
-	texture = tower_data.load_sprite_base_texture()
+	texture = tower_data.sprite_base_texture
 	is_wall = tower_data.type == TowerData.Type.WALL
 	$Turret.configure(tower_data)
 	$Range.configure(tower_data)
