@@ -8,7 +8,6 @@ const FIRE = "fire"
 func _ready() -> void:
 	sprite_frames = SpriteFrames.new()
 	sprite_frames.add_animation(IDLE)
-	sprite_frames.set_animation_speed(IDLE, 60)
 	sprite_frames.add_animation(FIRE)
 	sprite_frames.set_animation_loop(FIRE, false)
 	sprite_frames.set_animation_speed(FIRE, tower_data.projectile_sprite_fps)

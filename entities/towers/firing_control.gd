@@ -10,13 +10,14 @@ func _ready() -> void:
 			queue_free()
 			return
 			
+	$AudioStreamPlayer.stream = tower_data.projectile_shoot_sound
+			
 	$Timer.wait_time = tower_data.rate_of_fire
 	$Timer.start()
 	
 func _on_timer_timeout() -> void:
 	if (owner as Tower).current_target == null: return
 	
-	# TODO play firing sound
-	print_debug("BANG!")
-	
+	$AudioStreamPlayer.play()
+		
 	firing.emit()

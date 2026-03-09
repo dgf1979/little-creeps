@@ -77,6 +77,7 @@ func load_tower_data_for_path(map_dir_name: String) -> Dictionary[String, TowerD
 			tower.projectile_sprite_fps = cfg.get_value("Projectile", "texture_animation_fps")
 			tower.rate_of_fire = cfg.get_value("Projectile", "rate_of_fire")
 			tower.damage_per_hit = cfg.get_value("Projectile", "damage_per_hit")
+			tower.projectile_shoot_sound = load_sound(cfg.get_value("Projectile", "fire_sound_file_name"), tower_dir_path)
 			
 		tower_data.set(tower.display_name, tower)
 	return tower_data
@@ -110,3 +111,7 @@ func load_wave_data_for_path(map_dir_name: String) -> Array[WaveData]:
 func load_texture(file_name: String, dir: String) -> Texture2D:
 	var resource_path = dir.path_join(file_name)
 	return ResUtil.load_texture_resource(resource_path)
+	
+func load_sound(file_name: String, dir: String) -> AudioStream:
+	var resource_path = dir.path_join(file_name)
+	return ResUtil.load_audio_resource(resource_path)
