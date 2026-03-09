@@ -76,6 +76,7 @@ func take_damage(damage: int) -> void:
 		_die()
 		
 func _die() -> void:
+	Event.creep_elimination.emit(self)
 	queue_free()
 		
 	
