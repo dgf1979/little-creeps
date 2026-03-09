@@ -28,7 +28,7 @@ func _ready() -> void:
 		else: #remaining frames are the firing animation that gets played
 			sprite_frames.add_frame(FIRE, atlas_texture)
 		
-func _on_firing_control_firing(_damage: int) -> void:
+func _on_firing_control_firing() -> void:
 	play(FIRE, tower_data.projectile_sprite_fps)
 	
 func _on_animation_finished() -> void:

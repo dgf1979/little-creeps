@@ -1,3 +1,4 @@
+class_name Config
 extends Node
 
 # this exists simply as a place to access the tower config data and any relevant helper methods.

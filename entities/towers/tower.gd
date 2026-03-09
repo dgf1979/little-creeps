@@ -2,16 +2,17 @@ extends Sprite2D
 class_name Tower
 
 @onready var creep_detection: Area2D = $CreepDetection
+@onready var config: Config = %Config
 
 var current_target: Creep = null
 
 func _ready() -> void:
 	Event.tower_instance_select.connect(_on_tower_selected)
-	texture = %Config.tower_data.sprite_base_texture
-	$Range.radius = (%Config.tower_data as TowerData).target_range
+	texture = config.tower_data.sprite_base_texture
+	$Range.radius = (config.tower_data as TowerData).target_range
 
 func configure(tower_data: TowerData):
-	$Config.store(tower_data)
+	%Config.store(tower_data)
 
 func _on_click_zone_toggled(toggled_on: bool) -> void:
 	if toggled_on:
@@ -28,7 +29,7 @@ func _on_tower_selected(tower: Tower) -> void:
 	
 func _process(_delta: float) -> void:
 	# walls don't need to do anything
-	if %Config.is_wall(): return
+	if config.is_wall(): return
 	# don't need to look for creeps in range if we already have a current target
 	if current_target != null: return
 	
@@ -50,5 +51,5 @@ func _on_creep_detection_area_exited(area: Area2D) -> void:
 	if area.owner == current_target:
 		current_target = null
 
-func _on_firing_control_firing(damage: int) -> void:
-	current_target.take_damage(damage)
+func _on_firing_control_firing() -> void:
+	current_target.take_damage((config.tower_data as TowerData).damage_per_hit)
