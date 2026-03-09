@@ -74,6 +74,7 @@ func load_tower_data_for_path(map_dir_name: String) -> Dictionary[String, TowerD
 		# projectile type section - not required if type is 'WALL'
 		if tower.type != TowerData.Type.WALL:
 			tower.projectile_sprite_texture = load_texture(cfg.get_value("Projectile", "texture_file_name"), tower_dir_path)
+			tower.projectile_sprite_fps = cfg.get_value("Projectile", "texture_animation_fps")
 			tower.rate_of_fire = cfg.get_value("Projectile", "rate_of_fire")
 			tower.damage_per_hit = cfg.get_value("Projectile", "damage_per_hit")
 			

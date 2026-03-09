@@ -70,6 +70,14 @@ func _process(delta: float) -> void:
 		# if the path is empty after removing the last segment, we've reached the end
 		if _path.is_empty(): _exit_reached()
 		
+func take_damage(damage: int) -> void:
+	hit_points = clampi(hit_points - damage, 0, hit_points)
+	if hit_points == 0:
+		_die()
+		
+func _die() -> void:
+	queue_free()
+		
 	
 
 	

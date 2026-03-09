@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://brxltm7pbynu" path="res://entities/towers/tower.gd" id="1_i6n5m"]
 [ext_resource type="Script" uid="uid://d33mjde32jswu" path="res://entities/towers/turret.gd" id="2_eauc5"]
+[ext_resource type="Script" uid="uid://d2ef0lu3gyc8f" path="res://entities/towers/config_data.gd" id="2_irjtw"]
+[ext_resource type="Script" uid="uid://cq5wy1ra67btg" path="res://entities/towers/firing_effect.gd" id="3_3qjjp"]
 [ext_resource type="Script" uid="uid://cocroaguyutrc" path="res://entities/towers/creep_detection.gd" id="4_3qjjp"]
 [ext_resource type="Script" uid="uid://csn1l3t2gmg1q" path="res://entities/towers/firing_control.gd" id="4_4p4bm"]
 [ext_resource type="PackedScene" uid="uid://7tbp4i36fdxp" path="res://entities/range/range.tscn" id="4_igp14"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_irjtw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xb23s"]
 resource_local_to_scene = true
@@ -12,7 +16,12 @@ resource_local_to_scene = true
 [node name="Tower" type="Sprite2D" unique_id=1578966450]
 script = ExtResource("1_i6n5m")
 
+[node name="Config" type="Node" parent="." unique_id=1471313114]
+unique_name_in_owner = true
+script = ExtResource("2_irjtw")
+
 [node name="ClickZone" type="TextureButton" parent="." unique_id=118939495]
+z_index = 99
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,6 +31,11 @@ toggle_mode = true
 
 [node name="Turret" type="Sprite2D" parent="." unique_id=617476370]
 script = ExtResource("2_eauc5")
+
+[node name="FiringEffect" type="AnimatedSprite2D" parent="Turret" unique_id=1209502115]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_irjtw")
+script = ExtResource("3_3qjjp")
 
 [node name="Range" parent="." unique_id=18209550 instance=ExtResource("4_igp14")]
 visible = false
@@ -37,6 +51,11 @@ script = ExtResource("4_4p4bm")
 
 [node name="Timer" type="Timer" parent="FiringControl" unique_id=2004971837]
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FiringControl" unique_id=681567396]
+
 [connection signal="toggled" from="ClickZone" to="." method="_on_click_zone_toggled"]
+[connection signal="animation_finished" from="Turret/FiringEffect" to="Turret/FiringEffect" method="_on_animation_finished"]
 [connection signal="area_entered" from="CreepDetection" to="." method="_on_creep_detection_area_entered"]
 [connection signal="area_exited" from="CreepDetection" to="." method="_on_creep_detection_area_exited"]
+[connection signal="firing" from="FiringControl" to="." method="_on_firing_control_firing"]
+[connection signal="firing" from="FiringControl" to="Turret/FiringEffect" method="_on_firing_control_firing"]

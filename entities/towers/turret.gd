@@ -2,9 +2,9 @@ extends Sprite2D
 
 @onready var tower: Tower = owner
 
-func configure(tower_data: TowerData):
-	if tower_data.has_turret:
-		texture = tower_data.sprite_turret_texture
+func _ready() -> void:
+	if %Config.tower_data.has_turret:
+		texture = %Config.tower_data.sprite_turret_texture
 	else: # remove this node if unused
 		queue_free()
 

@@ -1,6 +1,8 @@
 extends Area2D
 
-func configure(tower_data: TowerData) -> void:
+@onready var tower_data: TowerData = %Config.tower_data
+
+func _ready() -> void:
 	# walls don't need to track creeps, so remove if that's the case
 	match tower_data.type:
 		TowerData.Type.WALL:
