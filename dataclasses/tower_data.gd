@@ -16,19 +16,19 @@ var damage_per_hit: int = 0
 
 func load_sprite_base_texture() -> Texture2D:
 	var resource_path = Constants.MAPS_PATH.path_join(Selection.selected_map_dir).path_join("towers").path_join(sprite_base_file_name)
-	return ImageUtil.load_texture_resource(resource_path)
+	return ResUtil.load_texture_resource(resource_path)
 	
 func load_sprite_turret_texture() -> Texture2D:
 	var resource_path = Constants.MAPS_PATH.path_join(Selection.selected_map_dir).path_join("towers").path_join(sprite_turret_file_name)
-	return ImageUtil.load_texture_resource(resource_path)
+	return ResUtil.load_texture_resource(resource_path)
 	
 func load_thumbnail_texture() -> Texture2D:
 	var resource_path = Constants.MAPS_PATH.path_join(Selection.selected_map_dir).path_join("towers").path_join(thumbnail_file_name)
-	return ImageUtil.load_texture_resource(resource_path)
+	return ResUtil.load_texture_resource(resource_path)
 	
 func load_projectile_sprite_texture() -> Texture2D:
 	var resource_path = Constants.MAPS_PATH.path_join(Selection.selected_map_dir).path_join("towers").path_join(projectile_sprite_file_name)
-	return ImageUtil.load_texture_resource(resource_path)
+	return ResUtil.load_texture_resource(resource_path)
 	
 func load_firing_sound() -> AudioStream:
 	var resource_path = Constants.MAPS_PATH.path_join(Selection.selected_map_dir).path_join("towers").path_join(projectile_firing_sound_file_name)

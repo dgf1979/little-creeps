@@ -10,7 +10,7 @@ func load_map_data_for_path(map_dir_name: String) -> MapData:
 	map_data.map_name = cfg.get_value("MapData","map_name",null)
 	map_data.wall_mode = cfg.get_value("MapData","wall_mode",null)
 	
-	var bitmap = ImageUtil.load_texture_resource_as_image(map_data.map_dir_path.path_join(Constants.MAP_BITMAP_FILE_NAME))
+	var bitmap = ResUtil.load_texture_resource_as_image(map_data.map_dir_path.path_join(Constants.MAP_BITMAP_FILE_NAME))
 	for row in range(bitmap.get_height()):
 		map_data.map_array.append([])
 		for col in range(bitmap.get_width()):

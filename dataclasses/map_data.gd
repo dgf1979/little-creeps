@@ -14,11 +14,11 @@ var map_array: Array[Array] = [[]]
 
 func load_preview_image() -> Texture2D:
 	var resource_path = map_dir_path.path_join(Constants.MAP_PREVIEW_FILE_NAME)
-	return ImageUtil.load_texture_resource(resource_path)
+	return ResUtil.load_texture_resource(resource_path)
 	
 func load_map_image() -> Texture2D:
 	var resource_path = map_dir_path.path_join(Constants.MAP_IMAGE_FILE_NAME)
-	return ImageUtil.load_texture_resource(resource_path)
+	return ResUtil.load_texture_resource(resource_path)
 	
 #const _block_char = "\u2588" # character code for solid block
 #func map_to_debug_string() -> String:
