@@ -41,7 +41,6 @@ texture = ExtResource("1_wfufn")
 script = ExtResource("2_eauc5")
 
 [node name="FiringEffect" type="AnimatedSprite2D" parent="Turret" unique_id=1209502115]
-unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_irjtw")
 script = ExtResource("3_3qjjp")
 

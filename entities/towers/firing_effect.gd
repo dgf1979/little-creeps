@@ -8,7 +8,10 @@ const FIRE = "fire"
 func _ready() -> void:
 	sprite_frames = SpriteFrames.new()
 	sprite_frames.add_animation(IDLE)
+	sprite_frames.set_animation_speed(IDLE, 60)
 	sprite_frames.add_animation(FIRE)
+	sprite_frames.set_animation_loop(FIRE, false)
+	sprite_frames.set_animation_speed(FIRE, tower_data.projectile_sprite_fps)
 	
 	var effect_sprite_sheet: Texture2D = tower_data.projectile_sprite_texture
 	# expectation here is that sprite sheet is a horizontal strip of exactly square sprites 
@@ -16,7 +19,8 @@ func _ready() -> void:
 	var frame_size = Vector2(sheet_height, sheet_height)
 	@warning_ignore("integer_division")
 	var frame_count = effect_sprite_sheet.get_width() / sheet_height
-	for i in frame_count:
+	if frame_count < 2: push_error("bullet effect sprite sheet should have at least 2 frames; one for idle and one for firing")
+	for i in range(frame_count):
 		var frame_pos = Vector2i(i * sheet_height, 0)
 		var region = Rect2(frame_pos, frame_size)
 		var atlas_texture = AtlasTexture.new()
@@ -27,9 +31,10 @@ func _ready() -> void:
 			sprite_frames.add_frame(IDLE, atlas_texture)
 		else: #remaining frames are the firing animation that gets played
 			sprite_frames.add_frame(FIRE, atlas_texture)
+	play(IDLE)
 		
 func _on_firing_control_firing() -> void:
-	play(FIRE, tower_data.projectile_sprite_fps)
+	play(FIRE)
 	
 func _on_animation_finished() -> void:
 	if animation == FIRE:
