@@ -13,6 +13,6 @@ func _ready() -> void:
 func _on_firing_control_firing() -> void:
 	var missle_instance: Missile = MISSILE_SCENE.instantiate()
 	missle_instance.sprite_sheet = tower_data.projectile_sprite_texture
-	add_child(missle_instance)
+	owner.add_child(missle_instance)
 	missle_instance.launch_at((owner as Tower).current_target)
 	
