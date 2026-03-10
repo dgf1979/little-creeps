@@ -6,11 +6,10 @@ const FIRE = "fire"
 @onready var tower_data = (%Config.tower_data as TowerData)
 	
 func _ready() -> void:
-	# walls don't need to track creeps, so remove if that's the case
-	match tower_data.type:
-		TowerData.Type.WALL:
-			queue_free()
-			return
+	# this only applies to bullet types, so remove if otherwise
+	if tower_data.type != TowerData.Type.BULLET:
+		queue_free()
+		return
 	
 	sprite_frames = SpriteFrames.new()
 	sprite_frames.add_animation(IDLE)

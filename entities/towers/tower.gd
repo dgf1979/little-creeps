@@ -52,4 +52,5 @@ func _on_creep_detection_area_exited(area: Area2D) -> void:
 		current_target = null
 
 func _on_firing_control_firing() -> void:
-	current_target.take_damage((config.tower_data as TowerData).damage_per_hit)
+	if current_target and config.tower_data.type == TowerData.Type.BULLET:
+		current_target.take_damage((config.tower_data as TowerData).damage_per_hit)

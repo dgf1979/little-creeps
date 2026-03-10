@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://3wnr42r2udtu"]
+
+[ext_resource type="Script" uid="uid://bjwd3o1hqrv65" path="res://entities/towers/missile/missile.gd" id="1_q7t4p"]
+[ext_resource type="Script" uid="uid://cem85se6nrp04" path="res://entities/towers/missile/animation.gd" id="2_cfgkk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wmjx0"]
+
+[node name="Missile" type="Node2D" unique_id=1547397173]
+script = ExtResource("1_q7t4p")
+
+[node name="Animation" type="AnimatedSprite2D" parent="." unique_id=323585490]
+sprite_frames = SubResource("SpriteFrames_wmjx0")
+script = ExtResource("2_cfgkk")

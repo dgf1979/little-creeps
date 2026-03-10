@@ -17,7 +17,5 @@ func _ready() -> void:
 	
 func _on_timer_timeout() -> void:
 	if (owner as Tower).current_target == null: return
-	
 	$AudioStreamPlayer.play()
-		
 	firing.emit()
