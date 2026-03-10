@@ -4,6 +4,12 @@
 [ext_resource type="Script" uid="uid://cem85se6nrp04" path="res://entities/towers/missile/animation.gd" id="2_cfgkk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wmjx0"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Missile" type="Node2D" unique_id=1547397173]
 script = ExtResource("1_q7t4p")

@@ -38,6 +38,12 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="Little Creeps"
 
+[file_customization]
+
+folder_colors={
+"res://maps/": "green"
+}
+
 [gui]
 
 theme/custom="uid://d3c85chvyq6ad"

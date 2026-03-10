@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://bixdd27jh060t"]
+
+[ext_resource type="Script" uid="uid://cjsg7vikhyx0s" path="res://entities/splosion/splosion.gd" id="1_p66er"]
+[ext_resource type="Texture2D" uid="uid://d2abmw7xwf41v" path="res://entities/splosion/splosion.png" id="2_dhspj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a5lbb"]
+radius = 30.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccvee"]
+atlas = ExtResource("2_dhspj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pt0h"]
+atlas = ExtResource("2_dhspj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r714i"]
+atlas = ExtResource("2_dhspj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48qx1"]
+atlas = ExtResource("2_dhspj")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd5ic"]
+atlas = ExtResource("2_dhspj")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpswh"]
+atlas = ExtResource("2_dhspj")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qluuw"]
+atlas = ExtResource("2_dhspj")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_selkf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccvee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pt0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r714i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48qx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd5ic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpswh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qluuw")
+}],
+"loop": false,
+"name": &"splode",
+"speed": 5.0
+}]
+
+[node name="Splosion" type="Node2D" unique_id=1140231306]
+script = ExtResource("1_p66er")
+
+[node name="BlastArea" type="Area2D" parent="." unique_id=1295182788]
+
+[node name="BlastRadius" type="CollisionShape2D" parent="BlastArea" unique_id=1777402459]
+shape = SubResource("CircleShape2D_a5lbb")
+
+[node name="SplosionAnimation" type="AnimatedSprite2D" parent="." unique_id=691382418]
+sprite_frames = SubResource("SpriteFrames_selkf")
+animation = &"splode"
+frame = 6
+frame_progress = 1.0
+speed_scale = 3.0
+
+[connection signal="animation_finished" from="SplosionAnimation" to="." method="_on_splosion_animation_animation_finished"]

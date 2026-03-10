@@ -35,6 +35,9 @@ signal game_pause()
 @warning_ignore("unused_signal")
 signal wave_countdown_tick(seconds_left: int)
 
+#EXPLOSION
+@warning_ignore("unused_signal")
+signal splode(area: Area2D)
 
 # debugging
 func _ready() -> void:
@@ -53,3 +56,5 @@ func _ready() -> void:
 	game_pause.connect(func(): print_debug("game_pause"))
 	
 	wave_countdown_tick.connect(func(s): print_debug("wave_countdown_tick=" + str(s)))
+	
+	splode.connect(func(_x): print_debug("splode"))

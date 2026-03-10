@@ -1,6 +1,8 @@
 class_name Missile
 extends Node2D
 
+const SPLOSION: PackedScene = preload("res://entities/splosion/splosion.tscn") 
+
 @export var sprite_sheet: Texture2D
 @export var speed: float = 200.0
 var _target: Creep
@@ -30,6 +32,7 @@ func _process(delta: float) -> void:
 		_splode()
 		
 func _splode() -> void:
+	var splosion_instance: Splosion = SPLOSION.instantiate()
+	get_parent().add_child(splosion_instance)
+	splosion_instance.global_position = _target_last_position
 	queue_free()
-	#TODO: splode.
-	
