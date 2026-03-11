@@ -32,7 +32,8 @@ func _on_map_update(map: Map) -> void:
 		var nearest_exit = map.spawn_exit_get_nearest(new_start)
 		var map_path = map.find_path(new_start, nearest_exit)
 		var global_path: Array[Vector2] = %ActiveMap.path_to_global(map_path)
-		global_path.remove_at(0) # already near or at here, so start at the next location
+		if global_path.size() > 0: 
+			global_path.remove_at(0) # already near or at here, so start at the next location
 		creep.set_path(global_path)
 		creep.set_idle(false)
 		

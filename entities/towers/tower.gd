@@ -35,7 +35,7 @@ func _process(_delta: float) -> void:
 	
 	# otherwise target the first creep in range 
 	for area in creep_detection.get_overlapping_areas():
-		if area.owner.is_in_group("creeps"):
+		if area.owner.is_in_group(Constants.CREEP_GROUP):
 			current_target = area.owner
 			return
 
@@ -43,7 +43,7 @@ func _on_creep_detection_area_entered(area: Area2D) -> void:
 	# don't care about new creeps in our area if we already have a target
 	if current_target != null: return
 	# otherwise, set this creep current target
-	if area.owner.is_in_group("creeps"):
+	if area.owner.is_in_group(Constants.CREEP_GROUP):
 		current_target = area.owner
 
 func _on_creep_detection_area_exited(area: Area2D) -> void:
