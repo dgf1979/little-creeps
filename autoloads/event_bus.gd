@@ -38,6 +38,8 @@ signal wave_countdown_tick(seconds_left: int)
 #EXPLOSION
 @warning_ignore("unused_signal")
 signal splode(areas: Array[Area2D], damage: int)
+@warning_ignore("unused_signal")
+signal spawn_splosion(tower_name: String, global_position: Vector2)
 
 # debugging
 func _ready() -> void:
@@ -58,3 +60,4 @@ func _ready() -> void:
 	wave_countdown_tick.connect(func(s): print_debug("wave_countdown_tick=" + str(s)))
 	
 	splode.connect(func(_x, _y): print_debug("splode"))
+	spawn_splosion.connect(func(_s, _xy): print_debug("spawn splosion at " + str(_xy)))

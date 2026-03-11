@@ -11,8 +11,10 @@ func _ready() -> void:
 		return
 
 func _on_firing_control_firing() -> void:
-	var missle_instance: Missile = MISSILE_SCENE.instantiate()
-	missle_instance.sprite_sheet = tower_data.projectile_sprite_texture
-	owner.add_child(missle_instance)
-	missle_instance.launch_at((owner as Tower).current_target)
+	var missile_instance: Missile = MISSILE_SCENE.instantiate()
+	missile_instance.sprite_sheet = tower_data.projectile_sprite_texture
+	missile_instance.speed = tower_data.missile_fly_speed
+	missile_instance.parent_tower_name = tower_data.display_name
+	owner.add_child(missile_instance)
+	missile_instance.launch_at((owner as Tower).current_target)
 	

@@ -78,7 +78,11 @@ func load_tower_data_for_path(map_dir_name: String) -> Dictionary[String, TowerD
 			tower.rate_of_fire = cfg.get_value("Projectile", "rate_of_fire")
 			tower.damage_per_hit = cfg.get_value("Projectile", "damage_per_hit")
 			tower.projectile_shoot_sound = load_sound(cfg.get_value("Projectile", "fire_sound_file_name"), tower_dir_path)
-			
+		if tower.type == TowerData.Type.MISSILE:
+			tower.missile_explosion_blast_radius = cfg.get_value("Projectile", "missile_explosion_blast_radius")
+			tower.missile_explosion_sprite_texture = load_texture(cfg.get_value("Projectile", "missile_explosion_sprite_texture_file_name"), tower_dir_path)
+			tower.missile_explosion_sprite_animation_fps = cfg.get_value("Projectile", "missile_explosion_sprite_animation_fps")
+			tower.missile_fly_speed = cfg.get_value("Projectile", "missile_fly_speed")
 		tower_data.set(tower.display_name, tower)
 	return tower_data
 	

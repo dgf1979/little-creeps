@@ -1,14 +1,17 @@
 class_name Missile
 extends Node2D
 
-const SPLOSION: PackedScene = preload("res://entities/splosion/splosion.tscn") 
-
 @export var sprite_sheet: Texture2D
-@export var speed: float = 200.0
+@export var speed: float
+@export var parent_tower_name: String
+
+func _ready() -> void:
+	assert(sprite_sheet, "sprite_sheet required")
+	assert(speed, "speed required")
+	assert(parent_tower_name, "parent_tower_name required")
+
 var _target: Creep
-
 var _launched = false
-
 func launch_at(target: Creep) -> void:
 	_target = target
 	_launched = true
@@ -32,7 +35,5 @@ func _process(delta: float) -> void:
 		_splode()
 		
 func _splode() -> void:
-	var splosion_instance: Splosion = SPLOSION.instantiate()
-	get_parent().add_child(splosion_instance)
-	splosion_instance.global_position = _target_last_position
+	Event.spawn_splosion.emit(parent_tower_name, _target_last_position)  
 	queue_free()
